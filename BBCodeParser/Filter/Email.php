@@ -72,7 +72,7 @@ class HTML_BBCodeParser_Filter_Email extends HTML_BBCodeParser
         $oe = $options['open_esc'];
         $ce = $options['close_esc'];
         $pattern = array(   "!(^|\s)([-a-z0-9_.]+@[-a-z0-9.]+\.[a-z]{2,4})!i",
-                            "!".$oe."email(".$ce."|\s.*".$ce.")(.*)".$oe."/email".$ce."!i");
+                            "!".$oe."email(".$ce."|\s.*".$ce.")(.*)".$oe."/email".$ce."!Ui");
         $replace = array(   "\\1".$o."email=\\2".$c."\\2".$o."/email".$c,
                             $o."email=\\2\\1\\2".$o."/email".$c);
         $this->_preparsed = preg_replace($pattern, $replace, $this->_text);

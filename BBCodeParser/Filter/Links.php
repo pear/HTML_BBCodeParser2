@@ -72,7 +72,7 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser
         $oe = $options['open_esc'];
         $ce = $options['close_esc'];
         $pattern = array(   "!(^|\s|\()((((http(s?)|ftp)://)|www)[-a-z0-9.]+\.[a-z]{2,4}[^\s()]*)!i",
-                            "!".$oe."url(".$ce."|\s.*".$ce.")(.*)".$oe."/url".$ce."!i");
+                            "!".$oe."url(".$ce."|\s.*".$ce.")(.*)".$oe."/url".$ce."!iU");
         $replace = array(   "\\1".$o."url".$c."\\2".$o."/url".$c,
                             $o."url=\\2\\1\\2".$o."/url".$c);
         $this->_preparsed = preg_replace($pattern, $replace, $this->_text);
