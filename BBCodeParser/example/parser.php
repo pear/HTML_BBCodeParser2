@@ -65,7 +65,7 @@ he said: [quote=http://www.server.org/quote.html]i'm tony montana[/quote]
 http://www.server.org
 [url]http://www.server.org[/url]
 [url=http://www.server.org]server[/url]
-[url=http://www.server.org target=new]server[/url]
+[url=http://www.server.org t=new]server[/url]
 
 guest@anonymous.org
 [email]guest@anonymous.org[/email]
