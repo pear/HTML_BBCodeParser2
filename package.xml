@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<package version="1.0">
+ <name>HTML_BBCodeParser</name>
+ <summary>This is a parser to replace UBB style tags with their html equivalents.</summary>
+ <description>This is a parser to replace UBB style tags with their html equivalents.
+ It does not simply do some regex calls, but is complete stack based parse engine. This ensures that all tags are properly nested, if not, extra tags are added to maintain the nesting. This parser should only produce xhtml 1.0 compliant code. All tags are validated and so are all their attributes. It should be easy to extend this parser with your own tags.
+ </description>
+ <license>PHP License</license>
+ <maintainers>
+  <maintainer>
+   <user>sjr</user>
+   <role>lead</role>
+   <name>Stijn de Reede</name>
+   <email>sjr@gmx.co.uk</email>
+  </maintainer>
+ </maintainers>
+ <release>
+  <version>1.0</version>
+  <state>stable</state>
+  <date>2003-07-24</date>
+  <notes>First release of HTML_BBCodeParser</notes>
+  <filelist>
+   <dir name="/" baseinstalldir="HTML" role="php">
+    <file>BBCodeParser.php</file>
+    <dir name="BBCodeParser">
+     <dir name="Filter" role="php">
+      <file>Basic.php</file>
+      <file>Email.php</file>
+      <file>Images.php</file>
+      <file>Links.php</file>
+      <file>Lists.php</file>
+     </dir>
+     <dir name="example">
+      <file>BBCodeParser.ini</file>
+      <file role="php">parser.php</file>
+     </dir>
+    </dir>
+   </dir>
+  </filelist>
+ </release>
+</package>

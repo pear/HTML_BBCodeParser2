@@ -1,7 +1,7 @@
 <?
 
 /* adjust include_path to include PEAR */
-ini_set('include_path', ini_get('include_path').':/var/www/PEAR');
+ini_set('include_path', ini_get('include_path').':/usr/share/pear');
 
 /* all your errors are belong to us */
 error_reporting(E_ALL);

@@ -16,6 +16,8 @@
 // | Author: Stijn de Reede <sjr@gmx.co.uk>                               |
 // +----------------------------------------------------------------------+
 //
+// $Id$
+//
 
 /**
 * @package  HTML_BBCodeParser

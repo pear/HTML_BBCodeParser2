@@ -16,6 +16,8 @@
 // | Author: Stijn de Reede <sjr@gmx.co.uk>                               |
 // +----------------------------------------------------------------------+
 //
+// $Id$
+//
 
 /**
 * @package  HTML_BBCodeParser
@@ -175,9 +177,11 @@ class HTML_BBCodeParser
     {
 
         /* set the already set options */
-        $baseoptions = &PEAR::getStaticProperty('HTML_BBCodeParser', '_options');
-        foreach ($baseoptions as  $k => $v)  {
-            $this->_options[$k] = $v;
+        $baseoptions = &PEAR::getStaticProperty('HTML_BBCodeParser', '_options');                        
+        if (is_array($baseoptions)) {
+            foreach ($baseoptions as  $k => $v)  {
+                $this->_options[$k] = $v;
+            }
         }
 
         /* set the options passed as an argument */
@@ -285,10 +289,15 @@ class HTML_BBCodeParser
             $openPos = strpos($str, $this->_options['open'], $strPos);
             if ($openPos === false) {
                 $openPos = $strLength;
-            }
-            $nextOpenPos = @strpos($str, $this->_options['open'], $openPos + 1);
-            if ($nextOpenPos === false) {
                 $nextOpenPos = $strLength;
+            }
+            if ($openPos + 1 > $strLength) {
+                $nextOpenPos = $strLength;
+            } else {
+                $nextOpenPos = strpos($str, $this->_options['open'], $openPos + 1);
+                if ($nextOpenPos === false) {
+                    $nextOpenPos = $strLength;
+                }
             }
             $closePos = strpos($str, $this->_options['close'], $strPos);
             if ($closePos === false) {
@@ -321,7 +330,7 @@ class HTML_BBCodeParser
             }
 
             /* join 2 following text elements */
-            if ($tag['type'] === 0 && @$prev['type'] === 0) {
+            if ($tag['type'] === 0 && isset($prev) && $prev['type'] === 0) {
                 $tag['text'] = $prev['text'].$tag['text'];
                 array_pop($this->_tagArray);
             }
