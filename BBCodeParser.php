@@ -382,7 +382,9 @@ class HTML_BBCodeParser
                split the tag with arguments and all */
             $oe = $this->_options['open_esc'];
             $ce = $this->_options['close_esc'];
-            preg_match("!$oe([a-z]+)[^$ce]*$ce!i", $str, $tagArray);
+            if (preg_match("!$oe([a-z]+)[^$ce]*$ce!i", $str, $tagArray) == 0) {
+                return false;
+            }             
             $tag['tag'] = $tagArray[1];
             if ( (in_array($tag['tag'], array_keys($this->_definedTags)) == false) ) {
                 return false;                   /* nope, it's not valid */
