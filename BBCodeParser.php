@@ -392,7 +392,7 @@ class HTML_BBCodeParser
 
             /* tnx to Onno for the regex
                validate the arguments */
-            preg_match_all("![\s$oe]([a-z]+)=([a-z0-9%\./\:\-_~\?=\+&@#]+)(?=[\s$ce])!i", $str, $attributeArray, PREG_SET_ORDER);
+            preg_match_all("![\s$oe]([a-z]+)=([^\s$ce]+)(?=[\s$ce])!i", $str, $attributeArray, PREG_SET_ORDER);
             foreach ($attributeArray as $attribute) {
                 if ( (in_array($attribute[1], array_keys($this->_definedTags[$tag['tag']]['attributes'])) == true) ) {
                     $tag['attributes'][$attribute[1]] = $attribute[2];
