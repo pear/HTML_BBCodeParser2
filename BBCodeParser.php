@@ -177,7 +177,7 @@ class HTML_BBCodeParser
     {
 
         /* set the already set options */
-        $baseoptions = &PEAR::getStaticProperty('HTML_BBCodeParser', '_options');                        
+        $baseoptions = &PEAR::getStaticProperty('HTML_BBCodeParser', '_options');
         if (is_array($baseoptions)) {
             foreach ($baseoptions as  $k => $v)  {
                 $this->_options[$k] = $v;
@@ -384,7 +384,7 @@ class HTML_BBCodeParser
             $ce = $this->_options['close_esc'];
             if (preg_match("!$oe([a-z]+)[^$ce]*$ce!i", $str, $tagArray) == 0) {
                 return false;
-            }             
+            }
             $tag['tag'] = $tagArray[1];
             if ( (in_array($tag['tag'], array_keys($this->_definedTags)) == false) ) {
                 return false;                   /* nope, it's not valid */
@@ -392,7 +392,7 @@ class HTML_BBCodeParser
 
             /* tnx to Onno for the regex
                validate the arguments */
-            preg_match_all("![\s$oe]([a-z]+)=([a-z0-9%\./\:\-_~\?=\+&@]+)(?=[\s$ce])!i", $str, $attributeArray, PREG_SET_ORDER);
+            preg_match_all("![\s$oe]([a-z]+)=([a-z0-9%\./\:\-_~\?=\+&@#]+)(?=[\s$ce])!i", $str, $attributeArray, PREG_SET_ORDER);
             foreach ($attributeArray as $attribute) {
                 if ( (in_array($attribute[1], array_keys($this->_definedTags[$tag['tag']]['attributes'])) == true) ) {
                     $tag['attributes'][$attribute[1]] = $attribute[2];
