@@ -55,6 +55,13 @@ possible codes:
 [sub]subscript[/sub]
 [sup]superscript[/sup]
 
+[color=blue]blue text[/color]
+[size=18]the size of this text is 18pt[/size]
+[font=arial]different font type[/font]
+[align=right]yes, you're right, this isn't on the left[/align]
+he said: [quote=http://www.server.org/quote.html]i'm tony montana[/quote]
+[code]x + y = 6;[/code]
+
 http://www.server.org
 [url]http://www.server.org[/url]
 [url=http://www.server.org]server[/url]
