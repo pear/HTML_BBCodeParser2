@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <package version="1.0">
+ <!-- $Id: package.xml,v 1.2 2004-01-18 23:54:39 sjr Exp $ -->
  <name>HTML_BBCodeParser</name>
  <summary>This is a parser to replace UBB style tags with their html equivalents.</summary>
  <description>This is a parser to replace UBB style tags with their html equivalents.
@@ -15,16 +16,20 @@
   </maintainer>
  </maintainers>
  <release>
-  <version>1.0</version>
-  <state>stable</state>
-  <date>2003-07-24</date>
-  <notes>First release of HTML_BBCodeParser</notes>
+  <version>1.1b1</version>
+  <state>beta</state>
+  <date>2004-01-19</date>
+  <notes>This is a new beta release of HTML_BBCodeParser. It should fix some
+  reported issue's/bugs. It also contains a new filter for more advanced
+  text manipulation. Although this release is marked as a beta, I think
+  it should be pretty stable and not show many bugs.</notes>
   <filelist>
    <dir name="/" baseinstalldir="HTML" role="php">
     <file>BBCodeParser.php</file>
     <dir name="BBCodeParser">
      <dir name="Filter" role="php">
       <file>Basic.php</file>
+      <file>Extended.php</file>
       <file>Email.php</file>
       <file>Images.php</file>
       <file>Links.php</file>
@@ -38,4 +43,30 @@
    </dir>
   </filelist>
  </release>
+ <changelog>
+  <release>
+   <version>1.0</version>
+   <state>stable</state>
+   <date>2003-07-24</date>
+   <notes>First release of HTML_BBCodeParser</notes>
+   <filelist>
+    <dir name="/" baseinstalldir="HTML" role="php">
+     <file>BBCodeParser.php</file>
+     <dir name="BBCodeParser">
+      <dir name="Filter" role="php">
+       <file>Basic.php</file>
+       <file>Email.php</file>
+       <file>Images.php</file>
+       <file>Links.php</file>
+       <file>Lists.php</file>
+      </dir>
+      <dir name="example">
+       <file>BBCodeParser.ini</file>
+       <file role="php">parser.php</file>
+      </dir>
+     </dir>
+    </dir>
+   </filelist>
+  </release>
+ </changelog>
 </package>
