@@ -74,7 +74,10 @@ class HTML_BBCodeParser_Filter_Images extends HTML_BBCodeParser
         $c = $options['close'];
         $oe = $options['open_esc'];
         $ce = $options['close_esc'];
-        $this->_preparsed = preg_replace("!".$oe."img(".$ce."|\s.*".$ce.")(.*)".$oe."/img".$ce."!Ui", $o."img=\\2\\1".$o."/img".$c, $this->_text);
+        $this->_preparsed = preg_replace(
+			"!".$oe."img(\s?.*)".$ce."(.*)".$oe."/img".$ce."!Ui",
+			$o."img=\$2\$1".$c.$o."/img".$c,
+			$this->_text);
     }
 
 

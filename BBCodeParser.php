@@ -136,7 +136,7 @@ class HTML_BBCodeParser
     * @access   private
     * @var      array
     */
-    var $_options = array(  'quotestyle'    => 'single',
+    var $_options = array(  'quotestyle'    => 'double',
                             'quotewhat'     => 'all',
                             'open'          => '[',
                             'close'         => ']',
@@ -339,6 +339,7 @@ class HTML_BBCodeParser
             $prev = $tag;
             $strPos = $newPos;
         }
+        
     }
 
 
@@ -364,7 +365,7 @@ class HTML_BBCodeParser
 
         if (substr($str, 1, 1) == '/') {        /* closing tag */
 
-            $tag['tag'] = substr($str, 2, strlen($str) - 3);
+            $tag['tag'] = strtolower(substr($str, 2, strlen($str) - 3));
             if ( (in_array($tag['tag'], array_keys($this->_definedTags)) == false) ) {
                 return false;                   /* nope, it's not valid */
             } else {
@@ -382,28 +383,28 @@ class HTML_BBCodeParser
                split the tag with arguments and all */
             $oe = $this->_options['open_esc'];
             $ce = $this->_options['close_esc'];
-            if (preg_match("!$oe([a-z]+)[^$ce]*$ce!i", $str, $tagArray) == 0) {
+            $tagArray = array();
+            if (preg_match("!$oe([a-z0-9]+)[^$ce]*$ce!i", $str, $tagArray) == 0) {
                 return false;
             }
-            $tag['tag'] = $tagArray[1];
+            $tag['tag'] = strtolower($tagArray[1]);
             if ( (in_array($tag['tag'], array_keys($this->_definedTags)) == false) ) {
                 return false;                   /* nope, it's not valid */
             }
 
             /* tnx to Onno for the regex
                validate the arguments */
-            preg_match_all("![\s$oe]([a-z]+)=([^\s$ce]+)(?=[\s$ce])!i", $str, $attributeArray, PREG_SET_ORDER);
+            $attributeArray = array();
+            preg_match_all("![\s$oe]([a-z0-9]+)=([^\s$ce]+)(?=[\s$ce])!i", $str, $attributeArray, PREG_SET_ORDER);
             foreach ($attributeArray as $attribute) {
-                if ( (in_array($attribute[1], array_keys($this->_definedTags[$tag['tag']]['attributes'])) == true) ) {
-                    $tag['attributes'][$attribute[1]] = $attribute[2];
+            	    $attNam = strtolower($attribute[1]);
+                if ( (in_array($attNam, array_keys($this->_definedTags[$tag['tag']]['attributes'])) == true) ) {
+                    $tag['attributes'][$attNam] = $attribute[2];
                 }
             }
             return $tag;
         }
     }
-
-
-
 
     /**
     * Validates the tag array, regarding the allowed tags
@@ -419,16 +420,27 @@ class HTML_BBCodeParser
     * @access   private
     * @see      _isAllowed()
     * @see      $_tagArray
-    * @author   Stijn de Reede  <sjr@gmx.co.uk>
+    * @author   Stijn de Reede <sjr@gmx.co.uk>, Seth Price <seth@pricepages.org>
     */
-    function _validateTagArray()
-    {
+    function _validateTagArray(){
         $newTagArray = array();
         $openTags = array();
-        foreach ($this->_tagArray as $tag) {
+        foreach($this->_tagArray as $tag) {
             $prevTag = end($newTagArray);
             switch ($tag['type']) {
             case 0:
+                if(($child = $this->_childNeeded(end($openTags), 'text')) &&
+                    $child !== false &&
+                    /*
+                     * No idea what to do in this case: A child is needed, but
+                     * no valid one is returned. We'll ignore it here and live
+                     * with it until someone reports a valid bug.
+                     */
+                    $child !== true ){
+                    	
+                    $newTagArray[] = $child;
+                    $openTags[] = $child['tag'];
+                }
                 if ($prevTag['type'] === 0) {
                     $tag['text'] = $prevTag['text'].$tag['text'];
                     array_pop($newTagArray);
@@ -437,20 +449,43 @@ class HTML_BBCodeParser
                 break;
 
             case 1:
-                if ($this->_isAllowed(end($openTags), $tag['tag']) == false) {
+                if(($this->_isAllowed(end($openTags), $tag['tag']) == false) ||
+                   ($parent = $this->_parentNeeded(end($openTags), $tag['tag'])) === true ||
+                   ($child = $this->_childNeeded(end($openTags), $tag['tag'])) === true) {
                     $tag['type'] = 0;
                     if ($prevTag['type'] === 0) {
                         $tag['text'] = $prevTag['text'].$tag['text'];
                         array_pop($newTagArray);
                     }
                 } else {
+                	    if($parent) {
+                        /*
+                         * Avoid use of parent if we can help it. If we are
+                         * trying to insert a new parent, but the current tag is
+                         * the same as the previous tag, then assume that the
+                         * previous tag structure is valid, and add this tag as
+                         * a sibling. To add as a sibling, we need to close the
+                         * current tag.
+                         */
+                        if($tag['tag'] == end($openTags)){
+                            $newTagArray[] = $this->_buildTag('[/'.$tag['tag'].']');
+                            array_pop($openTags);
+                        } else {
+                            $newTagArray[] = $parent;
+                            $openTags[] = $parent['tag'];
+                        }
+                    }
+                	    if($child) {
+                        $newTagArray[] = $child;
+                        $openTags[] = $child['tag'];
+                    }
                     $openTags[] = $tag['tag'];
                 }
                 $newTagArray[] = $tag;
                 break;
 
             case 2:
-                if ( ($this->_isAllowed(end($openTags), $tag['tag']) == true) || ($tag['tag'] == end($openTags)) ) {
+                if(($tag['tag'] == end($openTags) || ($this->_isAllowed(end($openTags), $tag['tag']) == true))) {
                     if (in_array($tag['tag'], $openTags)) {
                         $tmpOpenTags = array();
                         while (end($openTags) != $tag['tag']) {
@@ -460,12 +495,15 @@ class HTML_BBCodeParser
                         }
                         $newTagArray[] = $tag;
                         array_pop($openTags);
+                        /* why is this here? it just seems to break things
+                         * (nested lists where closing tags need to be
+                         * generated)
                         while (end($tmpOpenTags)) {
                             $tmpTag = $this->_buildTag('['.end($tmpOpenTags).']');
                             $newTagArray[] = $tmpTag;
                             $openTags[] = $tmpTag['tag'];
                             array_pop($tmpOpenTags);
-                        }
+                        }*/
                     }
                 } else {
                     $tag['type'] = 0;
@@ -485,8 +523,73 @@ class HTML_BBCodeParser
         $this->_tagArray = $newTagArray;
     }
 
+    /**
+     * Checks to see if a parent is needed
+     * 
+     * Checks to see if the current $in tag has an appropriate parent. If it
+     * does, then it returns false. If a parent is needed, then it returns the
+     * first tag in the list to add to the stack.
+     *
+     * @param    array           tag that is on the outside
+     * @param    array           tag that is on the inside
+     * @return   boolean         false if not needed, tag if needed, true if out
+     *                           of  our minds
+     * @access   private
+     * @see      _validateTagArray()
+     * @author   Seth Price <seth@pricepages.org>
+     */
+    function _parentNeeded($out, $in){
+    	    if(!isset($this->_definedTags[$in]['parent']))      return false;
+        if ($this->_definedTags[$in]['parent'] == 'all')    return false;
 
+        $ar = explode('^', $this->_definedTags[$in]['parent']);
+        $tags = explode(',', $ar[1]);
+        if($ar[0] == 'none'){
+            if($out && in_array($out, $tags)) return false;
+            //Create a tag from the first one on the list
+            return $this->_buildTag('['.$tags[0].']');
+    	    }
+        if($ar[0] == 'all' && $out && !in_array($out, $tags)) return false;
+        /*
+         * Tag is needed, we don't know which one. We could make something up,
+         * but it would be so random, I think that it would be worthless.
+         */
+        return true;
+    }
 
+    /**
+     * Checks to see if a child is needed
+     * 
+     * Checks to see if the current $out tag has an appropriate child. If it
+     * does, then it returns false. If a child is needed, then it returns the
+     * first tag in the list to add to the stack.
+     *
+     * @param    array           tag that is on the outside
+     * @param    array           tag that is on the inside
+     * @return   boolean         false if not needed, tag if needed, true if out
+     *                           of our minds
+     * @access   private
+     * @see      _validateTagArray()
+     * @author   Seth Price <seth@pricepages.org>
+     */
+    function _childNeeded($out, $in){
+    	    if(!isset($this->_definedTags[$out]['child']))      return false;
+        if ($this->_definedTags[$out]['child'] == 'all')    return false;
+		
+        $ar = explode('^', $this->_definedTags[$out]['child']);
+        $tags = explode(',', $ar[1]);
+        if($ar[0] == 'none'){
+            if($in && in_array($in, $tags)) return false;
+            //Create a tag from the first one on the list
+            return $this->_buildTag('['.$tags[0].']');
+    	    }
+        if($ar[0] == 'all' && $in && !in_array($in, $tags)) return false;
+        /*
+         * Tag is needed, we don't know which one. We could make something up,
+         * but it would be so random, I think that it would be worthless.
+         */
+        return true;
+    }
 
     /**
     * Checks to see if a tag is allowed inside another tag

@@ -25,12 +25,14 @@
 * @author   Stijn de Reede  <sjr@gmx.co.uk>
 */
 
-
+/**
+ * 
+ */
 require_once('HTML/BBCodeParser.php');
 
-
-
-
+/**
+ * 
+ */
 class HTML_BBCodeParser_Filter_Lists extends HTML_BBCodeParser
 {
 
@@ -42,19 +44,21 @@ class HTML_BBCodeParser_Filter_Lists extends HTML_BBCodeParser
     */
     var $_definedTags = array(  'list'  => array(   'htmlopen'  => 'ol',
                                                     'htmlclose' => 'ol',
-                                                    'allowed'   => 'none^li',
-                                                    'attributes'=> array(   'list'  => 'type=%2$s%1$s%2$s',
-                                                                            's'     => 'start=%2$s%1$d%2$s')
+                                                    'allowed'   => 'all',
+                                                    'child'     => 'none^li',
+                                                    'attributes'=> array('list'  => 'style=%2$slist-style-type:%1$s;%2$s')
                                                     ),
                                 'ulist' => array(   'htmlopen'  => 'ul',
                                                     'htmlclose' => 'ul',
-                                                    'allowed'   => 'none^li',
-                                                    'attributes'=> array()
+                                                    'allowed'   => 'all',
+                                                    'child'     => 'none^li',
+                                                    'attributes'=> array('list'  => 'style=%2$slist-style-type:%1$s;%2$s')
                                                     ),
                                 'li'    => array(   'htmlopen'  => 'li',
                                                     'htmlclose' => 'li',
                                                     'allowed'   => 'all',
-                                                    'attributes'=> array(   'li'    => 'value=%2$s%1$d%2$s')
+                                                    'parent'    => 'none^ulist,list',
+                                                    'attributes'=> array()
                                                     )
                                 );
 
@@ -73,7 +77,7 @@ class HTML_BBCodeParser_Filter_Lists extends HTML_BBCodeParser
     * @return   none
     * @access   private
     * @see      $_text
-    * @author   Stijn de Reede  <sjr@gmx.co.uk>
+    * @author   Stijn de Reede <sjr@gmx.co.uk>, Seth Price <seth@pricepages.org>
     */
     function _preparse()
     {
@@ -82,14 +86,25 @@ class HTML_BBCodeParser_Filter_Lists extends HTML_BBCodeParser
         $c = $options['close'];
         $oe = $options['open_esc'];
         $ce = $options['close_esc'];
-        $pattern = array(   "!".$oe."\*".$ce."(.*)!i",
-                            "!".$oe."list".$ce."(.+)".$oe."/list".$ce."!isU");
-        $replace = array(   $o."li".$c."\\1".$o."/li".$c,
-                            $o."ulist".$c."\\1".$o."/ulist".$c);
+        
+        $pattern = array(   "!".$oe."\*".$ce."!",
+                            "!".$oe."(u?)list=(?-i:A)(\s*[^".$ce."]*)".$ce."!i",
+                            "!".$oe."(u?)list=(?-i:a)(\s*[^".$ce."]*)".$ce."!i",
+                            "!".$oe."(u?)list=(?-i:I)(\s*[^".$ce."]*)".$ce."!i",
+                            "!".$oe."(u?)list=(?-i:i)(\s*[^".$ce."]*)".$ce."!i",
+                            "!".$oe."(u?)list=(?-i:1)(\s*[^".$ce."]*)".$ce."!i",
+                            "!".$oe."(u?)list([^".$ce."]*)".$ce."!i");
+        
+        $replace = array(   $o."li".$c,
+                            $o."\$1list=upper-alpha\$2".$c,
+                            $o."\$1list=lower-alpha\$2".$c,
+                            $o."\$1list=upper-roman\$2".$c,
+                            $o."\$1list=lower-roman\$2".$c,
+                            $o."\$1list=decimal\$2".$c,
+                            $o."\$1list\$2".$c );
+        
         $this->_preparsed = preg_replace($pattern, $replace, $this->_text);
     }
-
-
 }
 
 

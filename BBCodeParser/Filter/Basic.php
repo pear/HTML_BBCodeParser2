@@ -47,12 +47,12 @@ class HTML_BBCodeParser_Filter_Basic extends HTML_BBCodeParser
                                                 'htmlclose' => 'em',
                                                 'allowed'   => 'all',
                                                 'attributes'=> array()),
-                                'u' => array(   'htmlopen'  => 'u',
-                                                'htmlclose' => 'u',
+                                'u' => array(   'htmlopen'  => 'span style="text-decoration:underline;"',
+                                                'htmlclose' => 'span',
                                                 'allowed'   => 'all',
                                                 'attributes'=> array()),
-                                's' => array(   'htmlopen'  => 'strike',
-                                                'htmlclose' => 'strike',
+                                's' => array(   'htmlopen'  => 'del',
+                                                'htmlclose' => 'del',
                                                 'allowed'   => 'all',
                                                 'attributes'=> array()),
                                 'sub' => array( 'htmlopen'  => 'sub',
@@ -64,7 +64,6 @@ class HTML_BBCodeParser_Filter_Basic extends HTML_BBCodeParser
                                                 'allowed'   => 'all',
                                                 'attributes'=> array())
                             );
-
 
 }
 
