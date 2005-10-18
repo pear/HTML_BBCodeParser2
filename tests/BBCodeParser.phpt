@@ -83,6 +83,16 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
 		$this->assertEquals(
 			'<ol style="list-style-type:decimal;"><li>ordered item 1</li><li>ordered item 2</li></ol>',
 			$bbc->$funcNam('[list=1][*]ordered item 1[*]ordered item 2[/list]'));
+        //Bug #512: [list] in a [list] breaks the first [list]
+        $this->assertEquals(
+            '<ol><li> Subject 1<ol><li> First</li><li> Second</li></ol></li><li> Subject 2</li></ol>',
+            $bbc->$funcNam('[list][*] Subject 1[list][*] First[*] Second[/list][*] Subject 2[/list]')
+        );
+        //Bug #1201: [list] output adding extra <li></li>
+        $this->assertEquals(
+            '<ol><li>txt</li></ol>',
+            $bbc->$funcNam('[list][*]txt[/list]')
+        );
 	}
 
 	function linkBBCode($bbc, $funcNam){
@@ -105,14 +115,43 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
 			'txt <a href="http://www.test.com/">www.test.com</a> txt',
 			$bbc->$funcNam('txt www.test.com txt'));
 		$this->assertEquals(
+			'txt (<a href="http://www.test.com/">www.test.com</a>) txt',
+			$bbc->$funcNam('txt (www.test.com) txt'));
+		$this->assertEquals(
+			'txt <a href="http://www.test.com/test.php?a=1,2">www.test.com/test.php?a=1,2</a>, txt',
+			$bbc->$funcNam('txt www.test.com/test.php?a=1,2, txt'));
+		$this->assertEquals(
+			'txt <a href="http://www.test.com/">www.test.com</a>, txt',
+			$bbc->$funcNam('txt www.test.com, txt'));
+		$this->assertEquals(
+			'txt <a href="http://www.test.com/">http://www.test.com</a>: txt',
+			$bbc->$funcNam('txt http://www.test.com: txt'));
+		$this->assertEquals(
+			'txt <a href="http://www.test.com/">www.test.com</a>; txt',
+			$bbc->$funcNam('txt www.test.com; txt'));
+        //Bug #1755: tags around an url -> mess
+		$this->assertEquals(
 			'txt <em><a href="http://www.test.com/">www.test.com</a></em> txt',
 			$bbc->$funcNam('txt [i]www.test.com[/i] txt'));
+        //Bug #1512: URL Tags Allow Javascript injection
 		$this->assertEquals(
 			'Click here',
 			$bbc->$funcNam('[url=javascript:location.replace("bad_link");]Click here[/url]'));
 		$this->assertEquals(
-			'<a href="http://domain.com/index.php?i=1&j=2">linked text</a>',
-			$bbc->$funcNam('[url=http://domain.com/index.php?i=1&j=2]linked text[/url]'));
+			'<a href="http://domain.com/index.php?i=1&amp;j=2">linked text</a>',
+			$bbc->$funcNam('[url=http://domain.com/index.php?i=1&j=2]linked text[/URL]'));
+        //Bug #5609: BBCodeParser allows XSS
+		$this->assertEquals(
+            '<a href="javascript&#058;//%0ASh=alert(%22CouCou%22);window.close();">Alert box with "CouCou"</a>',
+            $bbc->$funcNam('[url=javascript://%0ASh=alert(%22CouCou%22);window.close();]Alert box with "CouCou"[/url]')
+        );
+        /*
+        //Request #4936: Nested URLs in quotes not handled
+        $this->assertEquals(
+            '<q>Quoted text</q>', //?!?!?
+            $bbc->$funcNam('[quote="[url=http://somewhere.com]URL-Title[/url]"]Quoted text[/quote]')
+        );
+        */
 	}
 
 	function extBBCode($bbc, $funcNam){
@@ -123,6 +162,21 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
 		$this->assertEquals('<div style="text-align:right">yes, you\'re right, this isn\'t on the left</div>', $bbc->$funcNam('[align=right]yes, you\'re right, this isn\'t on the left[/align]'));
 		$this->assertEquals('he said: <q cite="http://www.server.org/quote.html">i\'m tony montana</q>', $bbc->$funcNam('he said: [quote=http://www.server.org/quote.html]i\'m tony montana[/quote]'));
 		$this->assertEquals('<code>x + y = 6;</code>', $bbc->$funcNam('[code]x + y = 6;[/code]'));
+		//Bug #1258: Extra tags rendered with faulty BBCode
+		$this->assertEquals(
+            '<span style="font-family:Verdana"><span style="color:red">my name NeverMind!</span></span>',
+            $bbc->$funcNam('[font=Verdana][color=red]my name NeverMind![/font][/color]')
+        );
+        //Bug #1979: Whitespaces in attribute are breaking it
+        $this->assertEquals(
+            '<span style="font-family:Comic Sans MS">txt</span>',
+            $bbc->$funcNam('[font=Comic Sans MS]txt[/font]')
+        );
+        //Bug #4844: Arbitrary HTML injection
+        $this->assertEquals(
+            '<div style="text-align:foo&#039;&gt;&lt;script&gt;alert(&#039;JavaScript_Enabled&#039;);&lt;/script&gt;&#039;&gt;&lt;">',
+            $bbc->$funcNam('[align=foo"><script>alert(\'JavaScript_Enabled\');</script>][/align]')
+        );
 	}
 }
 
