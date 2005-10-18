@@ -175,7 +175,7 @@ class HTML_BBCodeParser
 
         // set the options passed as an argument
         foreach ($options as $k => $v )  {
-           $this->_options[$k] = $v;
+            $this->_options[$k] = $v;
         }
 
         // add escape open and close chars to the options for preg escaping
@@ -456,7 +456,7 @@ class HTML_BBCodeParser
             $attributeArray = array();
             preg_match_all("![\s$oe]([a-z0-9]+)=([^\s$ce]+)(?=[\s$ce])!i", $str, $attributeArray, PREG_SET_ORDER);
             foreach ($attributeArray as $attribute) {
-            	$attNam = strtolower($attribute[1]);
+                $attNam = strtolower($attribute[1]);
                 if (in_array($attNam, array_keys($this->_definedTags[$tag['tag']]['attributes']))) {
                     $tag['attributes'][$attNam] = $attribute[2];
                 }
@@ -518,7 +518,7 @@ class HTML_BBCodeParser
                         array_pop($newTagArray);
                     }
                 } else {
-                	    if ($parent) {
+                    if ($parent) {
                         /*
                          * Avoid use of parent if we can help it. If we are
                          * trying to insert a new parent, but the current tag is
@@ -535,7 +535,7 @@ class HTML_BBCodeParser
                             $openTags[] = $parent['tag'];
                         }
                     }
-                	if ($child) {
+                    if ($child) {
                         $newTagArray[] = $child;
                         $openTags[] = $child['tag'];
                     }
@@ -545,7 +545,7 @@ class HTML_BBCodeParser
                 break;
 
             case 2:
-                if (($tag['tag'] == end($openTags) || ($this->_isAllowed(end($openTags), $tag['tag']) == true))) {
+                if (($tag['tag'] == end($openTags) || $this->_isAllowed(end($openTags), $tag['tag']))) {
                     if (in_array($tag['tag'], $openTags)) {
                         $tmpOpenTags = array();
                         while (end($openTags) != $tag['tag']) {
@@ -600,7 +600,7 @@ class HTML_BBCodeParser
      */
     function _parentNeeded($out, $in)
     {
-    	if (!isset($this->_definedTags[$in]['parent']) ||
+        if (!isset($this->_definedTags[$in]['parent']) ||
             ($this->_definedTags[$in]['parent'] == 'all')
         ) {
             return false;
@@ -614,7 +614,7 @@ class HTML_BBCodeParser
             }
             //Create a tag from the first one on the list
             return $this->_buildTag('['.$tags[0].']');
-	    }
+        }
         if ($ar[0] == 'all' && $out && !in_array($out, $tags)) {
             return false;
         }
@@ -640,7 +640,7 @@ class HTML_BBCodeParser
      */
     function _childNeeded($out, $in)
     {
-    	if (!isset($this->_definedTags[$out]['child']) ||
+        if (!isset($this->_definedTags[$out]['child']) ||
            ($this->_definedTags[$out]['child'] == 'all')
         ) {
             return false;
@@ -654,7 +654,7 @@ class HTML_BBCodeParser
             }
             //Create a tag from the first one on the list
             return $this->_buildTag('['.$tags[0].']');
-    	}
+        }
         if ($ar[0] == 'all' && $in && !in_array($in, $tags)) {
             return false;
         }
@@ -680,7 +680,7 @@ class HTML_BBCodeParser
     {
         if (!$out || ($this->_definedTags[$out]['allowed'] == 'all')) {
             return true;
-        }                                         
+        }
         if ($this->_definedTags[$out]['allowed'] == 'none') {
             return false;
         }
@@ -728,7 +728,7 @@ class HTML_BBCodeParser
                     //prevent XSS attacks. IMHO this is not enough, though...
                     //@see http://pear.php.net/bugs/bug.php?id=5609
                     $v = preg_replace('#(script|about|applet|activex|chrome):#is', "\\1&#058;", $v);
-                    
+
                     if (($this->_options['quotewhat'] == 'nothing') ||
                         (($this->_options['quotewhat'] == 'strings') && is_numeric($v))
                     ) {
