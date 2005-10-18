@@ -27,7 +27,7 @@
 /**
  * 
  */
-require_once('HTML/BBCodeParser.php');
+require_once 'HTML/BBCodeParser.php';
 
 /**
  * 
@@ -66,21 +66,21 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser
 
 
     /**
-    * Executes statements before the actual array building starts
-    *
-    * This method should be overwritten in a filter if you want to do
-    * something before the parsing process starts. This can be useful to
-    * allow certain short alternative tags which then can be converted into
-    * proper tags with preg_replace() calls.
-    * The main class walks through all the filters and and calls this
-    * method if it exists. The filters should modify their private $_text
-    * variable.
-    *
-    * @return   none
-    * @access   private
-    * @see      $_text
-    * @author   Stijn de Reede <sjr@gmx.co.uk>, Seth Price <seth@pricepages.org>
-    */
+     * Executes statements before the actual array building starts
+     *
+     * This method should be overwritten in a filter if you want to do
+     * something before the parsing process starts. This can be useful to
+     * allow certain short alternative tags which then can be converted into
+     * proper tags with preg_replace() calls.
+     * The main class walks through all the filters and and calls this
+     * method if it exists. The filters should modify their private $_text
+     * variable.
+     *
+     * @return   none
+     * @access   private
+     * @see      $_text
+     * @author   Stijn de Reede <sjr@gmx.co.uk>, Seth Price <seth@pricepages.org>
+     */
     function _preparse(){
         $options = PEAR::getStaticProperty('HTML_BBCodeParser','_options');
         $o = $options['open'];
@@ -106,27 +106,41 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser
      * @return  string
      * @access  private
      * @author  Seth Price <seth@pricepages.org>
+     * @author  Lorenzo Alberton <l.alberton@quipo.it>
 	 */
-	function smarterPPLinkExpand($matches){
+	function smarterPPLinkExpand($matches)
+    {
+        //echo '<hr><pre>';var_dump($matches);echo '</pre><hr>';
         $options = PEAR::getStaticProperty('HTML_BBCodeParser','_options');
         $o = $options['open'];
         $c = $options['close'];
         
         //If we have an intro tag that is [url], then skip this match
-        if($matches[1] == $o.'url'.$c){
+        if ($matches[1] == $o.'url'.$c){
             return $matches[0];
         }
         
- 		$off = strpos($matches[2], ':');
+ 		$punctuation = '.,;:'; // Links can't end with these chars
+		$trailing = '';
+        // Knock off ending punctuation
+        $last = substr($matches[2], -1);
+        while (strpos($punctuation, $last) !== false) {
+            // Last character is punctuation - remove it from the url
+            $trailing = $last.$trailing;
+            $matches[2] = substr($matches[2], 0, -1);
+            $last = substr($matches[2], -1);
+        }
+
+        $off = strpos($matches[2], ':');
 		
 		//Is a ":" (therefore a scheme) defined?
-		if($off === false){
+		if ($off === false){
 			/*
 			 * Create a link with the default scheme of http. Notice that the
 			 * text that is viewable to the user is unchanged, but the link
 			 * itself contains the "http://".
 			 */
-			return $matches[1].$o.'url='.$this->_defaultScheme.'://'.$matches[2].$c.$matches[2].$o.'/url'.$c;
+            return $matches[1].$o.'url='.$this->_defaultScheme.'://'.$matches[2].$c.$matches[2].$o.'/url'.$c.$trailing;
 		}
 
 		$scheme = substr($matches[2], 0, $off);
@@ -137,8 +151,8 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser
 		 * later in smarterPPLink() if we create it now and it isn't on the
 		 * scheme list.
 		 */
-		if(in_array($scheme, $this->_allowedSchemes)){
-			return $matches[1].$o.'url'.$c.$matches[2].$o.'/url'.$c;
+		if (in_array($scheme, $this->_allowedSchemes)){
+			return $matches[1].$o.'url'.$c.$matches[2].$o.'/url'.$c.$trailing;
 		} else {
 			return $matches[0];
 		}
@@ -161,20 +175,20 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser
 		
 		$off = strpos($urlServ, ':');
 		
-		if($off === false){
+		if ($off === false){
 			//Default to http
 			$urlServ = $this->_defaultScheme.'://'.$urlServ;
 			$off = strpos($urlServ, ':');
 		}
 		
 		//Add trailing slash if missing (to create a valid URL)
-		if(!$path){
+		if (!$path){
 			$path = '/';
 		}
 
 		$protocol = substr($urlServ, 0, $off);
 		
-		if(in_array($protocol, $this->_allowedSchemes)){
+		if (in_array($protocol, $this->_allowedSchemes)){
 			//If protocol is in the approved list than allow it
 			return $o.'url='.$urlServ.$path.$c.$matches[6].$o.'/url'.$c;
 		} else {
@@ -183,5 +197,4 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser
 		}
 	}
 }
-
 ?>
