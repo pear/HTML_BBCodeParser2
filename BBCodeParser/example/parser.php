@@ -1,4 +1,4 @@
-<?
+<?php
 
 /* adjust include_path to include PEAR */
 ini_set('include_path', ini_get('include_path').':/usr/share/pear');
@@ -32,17 +32,17 @@ $parsed = $parser->getParsed();
 <form method='get' action='parser.php'>
 <table border='1' cellpadding='5' cellspacing='0'>
 <tr><td valign='top'>
-input:<br>
-<textarea cols='45' rows='10' name='string'><?=@$_GET['string']?></textarea><br>
+input:<br/>
+<textarea cols='45' rows='10' name='string'><?php echo @$_GET['string']?></textarea><br/>
 <td valign='top'>
-ouput:<br>
-<textarea cols='45' rows='10'><?=htmlentities($parsed, ENT_QUOTES)?></textarea><br>
+ouput:<br/>
+<textarea cols='45' rows='10'><?php echo htmlentities($parsed, ENT_QUOTES)?></textarea><br/>
 </tr>
 <tr><td valign='top' colspan='2' align='center'>
-<input type='submit' value='          parse          '><br>
+<input type='submit' value='          parse          '><br/>
 </tr>
 <tr><td valign='top' colspan='2'>
-<?=$parsed?>
+<?php echo $parsed?>
 </tr>
 <tr>
 <td colspan='2'>

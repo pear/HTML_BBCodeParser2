@@ -180,12 +180,12 @@ class HTML_BBCodeParser
 
         // add escape open and close chars to the options for preg escaping
         $preg_escape = '\^$.[]|()?*+{}';
-        if (strstr($preg_escape, $this->_options['open'])) {
+        if ($this->_options['open'] != '' && strpos($preg_escape, $this->_options['open'])) {
             $this->_options['open_esc'] = "\\".$this->_options['open'];
         } else {
             $this->_options['open_esc'] = $this->_options['open'];
         }
-        if (strstr($preg_escape, $this->_options['close'])) {
+        if ($this->_options['close'] != '' && strpos($preg_escape, $this->_options['close'])) {
             $this->_options['close_esc'] = "\\".$this->_options['close'];
         } else {
             $this->_options['close_esc'] = $this->_options['close'];
