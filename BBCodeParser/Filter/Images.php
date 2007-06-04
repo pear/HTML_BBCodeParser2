@@ -23,12 +23,7 @@
 * @package  HTML_BBCodeParser
 * @author   Stijn de Reede  <sjr@gmx.co.uk>
 */
-
-
-require_once('HTML/BBCodeParser.php');
-
-
-
+require_once 'HTML/BBCodeParser.php';
 
 class HTML_BBCodeParser_Filter_Images extends HTML_BBCodeParser
 {
@@ -39,17 +34,19 @@ class HTML_BBCodeParser_Filter_Images extends HTML_BBCodeParser
     * @access   private
     * @var      array
     */
-    var $_definedTags = array(  'img' => array( 'htmlopen'  => 'img',
-                                                'htmlclose' => '',
-                                                'allowed'   => 'none',
-                                                'attributes'=> array(   'img'   => 'src=%2$s%1$s%2$s',
-                                                                        'w'     => 'width=%2$s%1$d%2$s',
-                                                                        'h'     => 'height=%2$s%1$d%2$s')
-                                                )
-                              );
-
-
-
+    var $_definedTags = array(
+        'img' => array(
+            'htmlopen'  => 'img',
+            'htmlclose' => '',
+            'allowed'   => 'none',
+            'attributes'=> array(
+                'img'   => 'src=%2$s%1$s%2$s',
+                'w'     => 'width=%2$s%1$d%2$s',
+                'h'     => 'height=%2$s%1$d%2$s',
+                'alt'   => 'alt=%2$s%1$s%2$s',
+            )
+        )
+    );
 
     /**
     * Executes statements before the actual array building starts
@@ -70,8 +67,8 @@ class HTML_BBCodeParser_Filter_Images extends HTML_BBCodeParser
     function _preparse()
     {
         $options = PEAR::getStaticProperty('HTML_BBCodeParser','_options');
-        $o = $options['open'];
-        $c = $options['close'];
+        $o  = $options['open'];
+        $c  = $options['close'];
         $oe = $options['open_esc'];
         $ce = $options['close_esc'];
         $this->_preparsed = preg_replace(
@@ -79,9 +76,4 @@ class HTML_BBCodeParser_Filter_Images extends HTML_BBCodeParser
 			$o."img=\$2\$1".$c.$o."/img".$c,
 			$this->_text);
     }
-
-
 }
-
-
-?>

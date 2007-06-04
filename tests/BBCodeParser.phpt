@@ -4,7 +4,8 @@ require_once 'HTML/BBCodeParser.php';
 
 class BBCodeParser_TestCase extends PHPUnit_TestCase
 {
-    function testFilters() {
+    function testFilters()
+    {
 		$bbc = new HTML_BBCodeParser(array('filters' => ''));
 		$bbc->addFilter('Basic');
 		$this->basicBBCode($bbc, 'qparse');
@@ -15,7 +16,8 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
 		$this->emailBBCode($bbc, 'qparse');
 	}
 
-	function testQparse(){
+	function testQparse()
+    {
 		$bbc = new HTML_BBCodeParser(array('filters' => 'Basic,Email,Extended,Images,Links,Lists'));
 		$this->basicBBCode($bbc, 'qparse');
 		$this->listBBCode($bbc, 'qparse');
@@ -25,18 +27,22 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
 		$this->emailBBCode($bbc, 'qparse');
 	}
 
-	function emailBBCode($bbc, $funcNam){
+	function emailBBCode($bbc, $funcNam)
+    {
 		$this->assertEquals('<a href="mailto:guest@anonymous.org">guest@anonymous.org</a>', $bbc->$funcNam('guest@anonymous.org'));
 		$this->assertEquals('<a href="mailto:guest@anonymous.org">mail me</a>', $bbc->$funcNam('[email=guest@anonymous.org]mail me[/email]'));
 		$this->assertEquals('<a href="mailto:guest@anonymous.org">guest@anonymous.org</a>', $bbc->$funcNam('[email]guest@anonymous.org[/email]'));
 	}
 
-	function imgBBCode($bbc, $funcNam){
+	function imgBBCode($bbc, $funcNam)
+    {
+        $this->assertEquals('<img src="/images/Enthalpy Wheel.png" width="100" height="99" alt="Enthalpy Wheel" />', $bbc->$funcNam('[img w=100 h=99 alt=Enthalpy Wheel]/images/Enthalpy Wheel.png[/img]'));
 		$this->assertEquals('<img src="img.jpg" />', $bbc->$funcNam('[img]img.jpg[/img]'));
 		$this->assertEquals('<img src="http://www.server.org/image.jpg" width="100" height="200" />', $bbc->$funcNam('[img w=100 h=200]http://www.server.org/image.jpg[/img]'));
 	}
 
-	function basicBBCode($bbc, $funcNam){
+	function basicBBCode($bbc, $funcNam)
+    {
 		$this->assertEquals('<strong>txt</strong>', $bbc->$funcNam('[b]txt[/b]'));
 		$this->assertEquals('<strong>txt</strong>', $bbc->$funcNam('[b]txt'));
 		$this->assertEquals('<em>txt</em>', $bbc->$funcNam('[i]txt[/i]'));
@@ -51,7 +57,8 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
 		$this->assertEquals('<em><strong>txt</strong></em>', $bbc->$funcNam('[i][b]txt[/i][/b]'));
 	}
 
-	function listBBCode($bbc, $funcNam){
+	function listBBCode($bbc, $funcNam)
+    {
 		$this->assertEquals('<ul><li>txt</li></ul>', $bbc->$funcNam('[*]txt'));
 		$this->assertEquals("<ul><li>txt\n</li></ul>", $bbc->$funcNam("[ulist][*]txt\n[/ulist]"));
 		$this->assertEquals('<ul><li>txt</li></ul>', $bbc->$funcNam('[ulist]txt[/ulist]'));
@@ -93,9 +100,14 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
             '<ol><li>txt</li></ol>',
             $bbc->$funcNam('[list][*]txt[/list]')
         );
+        //Bug#6335 Empty item displayed
+        $this->assertEquals(
+            '<ol style="list-style-type:decimal;"><li> Item one</li><li> Item two</li><li> Item three</li></ol>', 
+            $bbc->$funcNam('[list=1][*] Item one[*] Item two[*] Item three[/list]'));
 	}
 
-	function linkBBCode($bbc, $funcNam){
+	function linkBBCode($bbc, $funcNam)
+    {
 		$this->assertEquals(
 			'<a href="http://www.test.com/">http://www.test.com/</a>',
 			$bbc->$funcNam('http://www.test.com/'));
@@ -154,7 +166,8 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
         */
 	}
 
-	function extBBCode($bbc, $funcNam){
+	function extBBCode($bbc, $funcNam)
+    {
 		$this->assertEquals('<h2>txt</h2>', $bbc->$funcNam('[h2]txt[/h2]'));
 		$this->assertEquals('<span style="color:blue">blue text</span>', $bbc->$funcNam('[color=blue]blue text[/color]'));
 		$this->assertEquals('<span style="font-size:18pt">the size of this text is 18pt</span>', $bbc->$funcNam('[size=18]the size of this text is 18pt[/size]'));
