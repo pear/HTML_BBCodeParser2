@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <package version="1.0">
- <!-- $Id: package.xml,v 1.6 2007-06-04 21:41:38 dufuz Exp $ -->
+ <!-- $Id: package.xml,v 1.7 2007-06-04 21:46:17 dufuz Exp $ -->
  <name>HTML_BBCodeParser</name>
  <summary>This is a parser to replace UBB style tags with their html equivalents.</summary>
  <description>This is a parser to replace UBB style tags with their html equivalents.
@@ -21,6 +21,9 @@
    <date>2005-10-18</date>
    <notes>
 This is a PEAR-QA release.
+
+List of changes by Christian Weiske (cweiske)
+Bug #3775  strstr(): Empty delimiter.
 
 List of changes by Helgi Þormar Þorbjörnsson (dufuz)
 Bug #10616  Values are being truncated when a space is found.
