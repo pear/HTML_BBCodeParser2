@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <package version="1.0">
- <!-- $Id: package.xml,v 1.4 2005-10-18 12:57:44 quipo Exp $ -->
+ <!-- $Id: package.xml,v 1.5 2007-06-04 21:12:37 dufuz Exp $ -->
  <name>HTML_BBCodeParser</name>
  <summary>This is a parser to replace UBB style tags with their html equivalents.</summary>
  <description>This is a parser to replace UBB style tags with their html equivalents.
@@ -21,6 +21,9 @@
    <date>2005-10-18</date>
    <notes>
 This is a PEAR-QA release.
+
+List of changes by Helgi Þormar Þorbjörnsson (dufuz)
+Bug #10616  Values are being truncated when a space is found.
 
 List of changes by Seth Price:
 - fixed bug #512: [list] in a [list] breaks the first [list]
@@ -59,9 +62,9 @@ List of changes by Lorenzo Alberton (quipo):
        <file>BBCodeParser.ini</file>
        <file>parser.php</file>
       </dir>
-      <dir name="tests" role="test">
-       <file>BBCodeParser.phpt</file>
-      </dir>
+     </dir>
+     <dir name="tests" role="test">
+      <file>BBCodeParser.phpt</file>
      </dir>
     </dir>
    </filelist>
