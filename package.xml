@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <package version="1.0">
- <!-- $Id: package.xml,v 1.5 2007-06-04 21:12:37 dufuz Exp $ -->
+ <!-- $Id: package.xml,v 1.6 2007-06-04 21:41:38 dufuz Exp $ -->
  <name>HTML_BBCodeParser</name>
  <summary>This is a parser to replace UBB style tags with their html equivalents.</summary>
  <description>This is a parser to replace UBB style tags with their html equivalents.
@@ -26,6 +26,7 @@ List of changes by Helgi Þormar Þorbjörnsson (dufuz)
 Bug #10616  Values are being truncated when a space is found.
 
 List of changes by Seth Price:
+- fixed Bug #373  	URL's with '&' are parsed incorrectly
 - fixed bug #512: [list] in a [list] breaks the first [list]
 - fixed bug #1201: [list] output adding extra <li></li>
 - fixed bug #1258: Extra tags rendered with faulty BBCode
