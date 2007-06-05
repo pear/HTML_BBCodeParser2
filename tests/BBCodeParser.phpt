@@ -19,7 +19,7 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
 	function testQparse()
     {
 		$bbc = new HTML_BBCodeParser(array('filters' => 'Basic,Email,Extended,Images,Links,Lists'));
-		$this->basicBBCode($bbc, 'qparse');
+        $this->basicBBCode($bbc, 'qparse');
 		$this->listBBCode($bbc, 'qparse');
 		$this->linkBBCode($bbc, 'qparse');
 		$this->extBBCode($bbc, 'qparse');

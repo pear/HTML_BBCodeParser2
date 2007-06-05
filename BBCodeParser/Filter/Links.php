@@ -80,7 +80,8 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser
      * @return   none
      * @access   private
      * @see      $_text
-     * @author   Stijn de Reede <sjr@gmx.co.uk>, Seth Price <seth@pricepages.org>
+     * @author   Stijn de Reede <sjr@gmx.co.uk>
+     * @author   Seth Price <seth@pricepages.org>
      */
     function _preparse()
     {
@@ -155,9 +156,9 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser
          */
         if (in_array($scheme, $this->_allowedSchemes)) {
             return $matches[1].$o.'url'.$c.$matches[2].$o.'/url'.$c.$trailing;
-        } else {
-            return $matches[0];
         }
+        
+        return $matches[0];
     }
 
     /**
@@ -194,10 +195,10 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser
         if (in_array($protocol, $this->_allowedSchemes)) {
             //If protocol is in the approved list than allow it
             return $o.'url='.$urlServ.$path.$c.$matches[6].$o.'/url'.$c;
-        } else {
-            //Else remove url tag
-            return $matches[6];
         }
+        
+        //Else remove url tag
+        return $matches[6];
     }
 }
 ?>
