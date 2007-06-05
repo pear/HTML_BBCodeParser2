@@ -17,9 +17,8 @@ http://pear.php.net/dtd/package-2.0.xsd">
   <active>no</active>
  </lead>
  <date>2007-06-05</date>
- <time>21:44:31</time>
  <version>
-  <release>1.2.0</release>
+  <release>1.2.1</release>
   <api>1.2.0</api>
  </version>
  <stability>
@@ -27,7 +26,60 @@ http://pear.php.net/dtd/package-2.0.xsd">
   <api>stable</api>
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
- <notes>This is a PEAR-QA release.
+ <notes>
+ - Fix dependency issue
+ </notes>
+ <contents>
+  <dir name="/">
+   <dir name="BBCodeParser">
+    <dir name="example">
+     <file baseinstalldir="HTML" name="BBCodeParser.ini" role="doc" />
+     <file baseinstalldir="HTML" name="parser.php" role="doc" />
+    </dir> <!-- /BBCodeParser/example -->
+    <dir name="Filter">
+     <file baseinstalldir="HTML" name="Basic.php" role="php" />
+     <file baseinstalldir="HTML" name="Email.php" role="php" />
+     <file baseinstalldir="HTML" name="Extended.php" role="php" />
+     <file baseinstalldir="HTML" name="Images.php" role="php" />
+     <file baseinstalldir="HTML" name="Links.php" role="php" />
+     <file baseinstalldir="HTML" name="Lists.php" role="php" />
+    </dir> <!-- /BBCodeParser/Filter -->
+   </dir> <!-- /BBCodeParser -->
+   <dir name="tests">
+    <file baseinstalldir="HTML" name="BBCodeParser.phpt" role="test" />
+   </dir> <!-- /tests -->
+   <file baseinstalldir="HTML" name="BBCodeParser.php" role="php" />
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>4.3.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.5.4</min>
+   </pearinstaller>
+   <package>
+    <name>PEAR</name>
+    <channel>pear.php.net</channel>
+    <min>1.5.4</min>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <date>2007-06-05</date>
+   <version>
+    <release>1.2.0</release>
+    <api>1.2.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>This is a PEAR-QA release.
 
 List of changes by Christian Weiske (cweiske)
 Bug #3775  strstr(): Empty delimiter.
@@ -57,41 +109,8 @@ List of changes by Lorenzo Alberton (quipo):
 - coding standards fixes
 - added more testcases to the testsuite
 
- </notes>
- <contents>
-  <dir name="/">
-   <dir name="BBCodeParser">
-    <dir name="example">
-     <file baseinstalldir="HTML" name="BBCodeParser.ini" role="doc" />
-     <file baseinstalldir="HTML" name="parser.php" role="doc" />
-    </dir> <!-- /BBCodeParser/example -->
-    <dir name="Filter">
-     <file baseinstalldir="HTML" name="Basic.php" role="php" />
-     <file baseinstalldir="HTML" name="Email.php" role="php" />
-     <file baseinstalldir="HTML" name="Extended.php" role="php" />
-     <file baseinstalldir="HTML" name="Images.php" role="php" />
-     <file baseinstalldir="HTML" name="Links.php" role="php" />
-     <file baseinstalldir="HTML" name="Lists.php" role="php" />
-    </dir> <!-- /BBCodeParser/Filter -->
-   </dir> <!-- /BBCodeParser -->
-   <dir name="tests">
-    <file baseinstalldir="HTML" name="BBCodeParser.phpt" role="test" />
-   </dir> <!-- /tests -->
-   <file baseinstalldir="HTML" name="BBCodeParser.php" role="php" />
-  </dir> <!-- / -->
- </contents>
- <dependencies>
-  <required>
-   <php>
-    <min>4.0.0</min>
-   </php>
-   <pearinstaller>
-    <min>1.4.0b1</min>
-   </pearinstaller>
-  </required>
- </dependencies>
- <phprelease />
- <changelog>
+   </notes>
+  </release>
   <release>
    <version>
     <release>1.1</release>
