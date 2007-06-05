@@ -1,37 +1,44 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<package version="1.0">
- <!-- $Id: package.xml,v 1.8 2007-06-05 14:44:23 cweiske Exp $ -->
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.6.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+http://pear.php.net/dtd/tasks-1.0.xsd
+http://pear.php.net/dtd/package-2.0
+http://pear.php.net/dtd/package-2.0.xsd">
  <name>HTML_BBCodeParser</name>
+ <channel>pear.php.net</channel>
  <summary>This is a parser to replace UBB style tags with their html equivalents.</summary>
  <description>This is a parser to replace UBB style tags with their html equivalents.
  It does not simply do some regex calls, but is complete stack based parse engine. This ensures that all tags are properly nested, if not, extra tags are added to maintain the nesting. This parser should only produce xhtml 1.0 compliant code. All tags are validated and so are all their attributes. It should be easy to extend this parser with your own tags.
+ 
  </description>
- <license>PHP License</license>
- <maintainers>
-  <maintainer>
-   <user>sjr</user>
-   <role>lead</role>
-   <name>Stijn de Reede</name>
-   <email>sjr@gmx.co.uk</email>
-  </maintainer>
- </maintainers>
-  <release>
-   <version>1.2</version>
-   <state>stable</state>
-   <date>2005-10-18</date>
-   <notes><![CDATA[
-This is a PEAR-QA release.
+ <lead>
+  <name>Stijn de Reede</name>
+  <user>sjr</user>
+  <email>sjr@gmx.co.uk</email>
+  <active>no</active>
+ </lead>
+ <date>2007-06-05</date>
+ <time>21:44:31</time>
+ <version>
+  <release>1.2</release>
+  <api>1.2</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.php.net/license">PHP License</license>
+ <notes>This is a PEAR-QA release.
 
 List of changes by Christian Weiske (cweiske)
 Bug #3775  strstr(): Empty delimiter.
 
-List of changes by Helgi Þormar Þorbjörnsson (dufuz)
+List of changes by Helgi Ãžormar ÃžorbjÃ¶rnsson (dufuz)
 Bug #10616  Values are being truncated when a space is found.
 
 List of changes by Seth Price:
-- fixed Bug #373  	URL's with '&' are parsed incorrectly
+- fixed Bug #373  	URL&apos;s with &apos;&amp;&apos; are parsed incorrectly
 - fixed bug #512: [list] in a [list] breaks the first [list]
-- fixed bug #1201: [list] output adding extra <li></li>
+- fixed bug #1201: [list] output adding extra &lt;li&gt;&lt;/li&gt;
 - fixed bug #1258: Extra tags rendered with faulty BBCode
 - fixed bug #1299: Case sensitive in tag
 - fixed bug #1388: www links not expanded correctly
@@ -49,111 +56,90 @@ List of changes by Lorenzo Alberton (quipo):
   add/remove one or more filters
 - coding standards fixes
 - added more testcases to the testsuite
-]]></notes>
-   <filelist>
-    <dir name="/" baseinstalldir="HTML" role="php">
-     <file>BBCodeParser.php</file>
-     <dir name="BBCodeParser">
-      <dir name="Filter" role="php">
-       <file>Basic.php</file>
-       <file>Extended.php</file>
-       <file>Email.php</file>
-       <file>Images.php</file>
-       <file>Links.php</file>
-       <file>Lists.php</file>
-      </dir>
-      <dir name="example" role="doc">
-       <file>BBCodeParser.ini</file>
-       <file>parser.php</file>
-      </dir>
-     </dir>
-     <dir name="tests" role="test">
-      <file>BBCodeParser.phpt</file>
-     </dir>
-    </dir>
-   </filelist>
-  </release>
+
+ </notes>
+ <contents>
+  <dir name="/">
+   <dir name="BBCodeParser">
+    <dir name="example">
+     <file baseinstalldir="HTML" name="BBCodeParser.ini" role="doc" />
+     <file baseinstalldir="HTML" name="parser.php" role="doc" />
+    </dir> <!-- /BBCodeParser/example -->
+    <dir name="Filter">
+     <file baseinstalldir="HTML" name="Basic.php" role="php" />
+     <file baseinstalldir="HTML" name="Email.php" role="php" />
+     <file baseinstalldir="HTML" name="Extended.php" role="php" />
+     <file baseinstalldir="HTML" name="Images.php" role="php" />
+     <file baseinstalldir="HTML" name="Links.php" role="php" />
+     <file baseinstalldir="HTML" name="Lists.php" role="php" />
+    </dir> <!-- /BBCodeParser/Filter -->
+   </dir> <!-- /BBCodeParser -->
+   <dir name="tests">
+    <file baseinstalldir="HTML" name="BBCodeParser.phpt" role="test" />
+   </dir> <!-- /tests -->
+   <file baseinstalldir="HTML" name="BBCodeParser.php" role="php" />
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>4.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0b1</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
  <changelog>
   <release>
-   <version>1.1</version>
-   <state>stable</state>
+   <version>
+    <release>1.1</release>
+    <api>1.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
    <date>2004-02-28</date>
+   <license uri="http://www.php.net/license">PHP License</license>
    <notes>Since no bugs have come up for the beta release (except one, which
    was already fixed in CVS), the previous beta is now released as stable,
    with very few changes. Bigger changes, like more-than-one character
    delimiters, optional quotes in attribute values, etc, will be in the next
-   beta release.</notes>
-   <filelist>
-    <dir name="/" baseinstalldir="HTML" role="php">
-     <file>BBCodeParser.php</file>
-     <dir name="BBCodeParser">
-      <dir name="Filter" role="php">
-       <file>Basic.php</file>
-       <file>Extended.php</file>
-       <file>Email.php</file>
-       <file>Images.php</file>
-       <file>Links.php</file>
-       <file>Lists.php</file>
-      </dir>
-      <dir name="example">
-       <file>BBCodeParser.ini</file>
-       <file role="php">parser.php</file>
-      </dir>
-     </dir>
-    </dir>
-   </filelist>
+   beta release.
+   </notes>
   </release>
   <release>
-   <version>1.1b1</version>
-   <state>beta</state>
+   <version>
+    <release>1.1b1</release>
+    <api>1.1b1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
    <date>2004-01-19</date>
+   <license uri="http://www.php.net/license">PHP License</license>
    <notes>This is a new beta release of HTML_BBCodeParser. It should fix some
-   reported issue's/bugs. It also contains a new filter for more advanced
+   reported issue&apos;s/bugs. It also contains a new filter for more advanced
    text manipulation. Although this release is marked as a beta, I think
-   it should be pretty stable and not show many bugs.</notes>
-   <filelist>
-    <dir name="/" baseinstalldir="HTML" role="php">
-     <file>BBCodeParser.php</file>
-     <dir name="BBCodeParser">
-      <dir name="Filter" role="php">
-       <file>Basic.php</file>
-       <file>Extended.php</file>
-       <file>Email.php</file>
-       <file>Images.php</file>
-       <file>Links.php</file>
-       <file>Lists.php</file>
-      </dir>
-      <dir name="example">
-       <file>BBCodeParser.ini</file>
-       <file role="php">parser.php</file>
-      </dir>
-     </dir>
-    </dir>
-   </filelist>
+   it should be pretty stable and not show many bugs.
+   </notes>
   </release>
   <release>
-   <version>1.0</version>
-   <state>stable</state>
+   <version>
+    <release>1.0</release>
+    <api>1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
    <date>2003-07-24</date>
-   <notes>First release of HTML_BBCodeParser</notes>
-   <filelist>
-    <dir name="/" baseinstalldir="HTML" role="php">
-     <file>BBCodeParser.php</file>
-     <dir name="BBCodeParser">
-      <dir name="Filter" role="php">
-       <file>Basic.php</file>
-       <file>Email.php</file>
-       <file>Images.php</file>
-       <file>Links.php</file>
-       <file>Lists.php</file>
-      </dir>
-      <dir name="example">
-       <file>BBCodeParser.ini</file>
-       <file role="php">parser.php</file>
-      </dir>
-     </dir>
-    </dir>
-   </filelist>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>First release of HTML_BBCodeParser
+   </notes>
   </release>
  </changelog>
 </package>
