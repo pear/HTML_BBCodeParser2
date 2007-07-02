@@ -212,6 +212,18 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
               $bbc->qparse("[list] [*]one[*]two[/list]")
         );
     }
+
+
+
+    function testBug11370()
+    {
+        $bbc = new HTML_BBCodeParser(array('filters' => ''));
+        $bbc->addFilter('Images');
+
+        $this->assertEquals('<img src="admin.php?fs=image" />',
+              $bbc->qparse("[img]admin.php?fs=image[/img]")
+        );
+    }
 }
 
 //Run tests if run from the command line
