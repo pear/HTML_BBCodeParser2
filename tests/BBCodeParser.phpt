@@ -157,7 +157,7 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
             $bbc->$funcNam('[url=http://domain.com/index.php?i=1&amp;j=2]linked text[/URL]'));
         //Bug #5609: BBCodeParser allows XSS
 		$this->assertEquals(
-            '<a href="javascript&#058;//%0ASh=alert(%22CouCou%22);window.close();">Alert box with "CouCou"</a>',
+            '<a href="javascript&amp;#058;//%0ASh=alert(%22CouCou%22);window.close();">Alert box with "CouCou"</a>',
             $bbc->$funcNam('[url=javascript://%0ASh=alert(%22CouCou%22);window.close();]Alert box with "CouCou"[/url]')
         );
         /*
@@ -190,7 +190,7 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
         );
         //Bug #4844: Arbitrary HTML injection
         $this->assertEquals(
-            '<div style="text-align:foo&#039;&gt;&lt;script&gt;alert(&#039;JavaScript_Enabled&#039;);&lt;/script&gt;&#039;&gt;&lt;">',
+            '<div style="text-align:foo&quot;&gt;&lt;script&gt;alert(\'JavaScript_Enabled\');&lt;/script&gt;"></div>',
             $bbc->$funcNam('[align=foo"><script>alert(\'JavaScript_Enabled\');</script>][/align]')
         );
 	}

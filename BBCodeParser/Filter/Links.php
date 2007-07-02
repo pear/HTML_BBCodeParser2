@@ -172,10 +172,6 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser_Filter
 
         $urlServ = $matches[1];
         $path = $matches[5];
-        //fix &amp; only when not already done
-        if (strpos($path, '&amp;') === false) {
-            $path = str_replace('&', '&amp;', $path);
-        }
 
         $off = strpos($urlServ, ':');
 

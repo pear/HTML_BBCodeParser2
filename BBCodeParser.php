@@ -741,6 +741,8 @@ class HTML_BBCodeParser
                     //prevent XSS attacks. IMHO this is not enough, though...
                     //@see http://pear.php.net/bugs/bug.php?id=5609
                     $v = preg_replace('#(script|about|applet|activex|chrome):#is', "\\1&#058;", $v);
+                    $v = htmlspecialchars($v);
+                    $v = str_replace('&amp;amp;', '&amp;', $v);
 
                     if (($this->_options['quotewhat'] == 'nothing') ||
                         (($this->_options['quotewhat'] == 'strings') && is_numeric($v))
