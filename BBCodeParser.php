@@ -454,7 +454,7 @@ class HTML_BBCodeParser
             // tnx to Onno for the regex
             // validate the arguments
             $attributeArray = array();
-            $regex = "![\s$oe]([a-z0-9]+)=([^\s$ce]";
+            $regex = "![\s$oe]([a-z0-9]+)=(\"[^\s$ce]+\"|[^\s$ce]";
             if ($tag['tag'] != 'url') {
                 $regex .= "[^=]";
             }
@@ -463,7 +463,11 @@ class HTML_BBCodeParser
             foreach ($attributeArray as $attribute) {
                 $attNam = strtolower($attribute[1]);
                 if (in_array($attNam, array_keys($this->_definedTags[$tag['tag']]['attributes']))) {
-                    $tag['attributes'][$attNam] = $attribute[2];
+                    if ($attribute[2][0] == '"' && $attribute[2][strlen($attribute[2])-1] == '"') {
+                        $tag['attributes'][$attNam] = substr($attribute[2], 1, -1);
+                    } else {
+                        $tag['attributes'][$attNam] = $attribute[2];
+                    }
                 }
             }
             return $tag;
