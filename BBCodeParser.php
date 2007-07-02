@@ -266,6 +266,7 @@ class HTML_BBCodeParser
      * Add new filters
      *
      * @param mixed (array or string)
+     * @return boolean true if all ok, false if not.
      * @author Lorenzo Alberton <l.alberton@quipo.it>
      */
     function addFilters($filters)
@@ -280,13 +281,14 @@ class HTML_BBCodeParser
         }
         if (!is_array($filters)) {
             //invalid format
-            return;
+            return false;
         }
         foreach ($filters as $filter) {
             if (trim($filter)){
                 $this->addFilter($filter);
             }
         }
+        return true;
     }
 
     /**
