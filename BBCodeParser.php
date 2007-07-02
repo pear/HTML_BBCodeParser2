@@ -505,8 +505,12 @@ class HTML_BBCodeParser
                      * no valid one is returned. We'll ignore it here and live
                      * with it until someone reports a valid bug.
                      */
-                    $child !== true ){
-
+                    $child !== true )
+                {
+                    if (trim($tag['text']) == '') {
+                        //just an empty indentation or newline without value?
+                        continue;
+                    }
                     $newTagArray[] = $child;
                     $openTags[] = $child['tag'];
                 }
