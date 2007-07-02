@@ -25,15 +25,12 @@
 * @author   Stijn de Reede  <sjr@gmx.co.uk>
 */
 
-/**
- * 
- */
-require_once('HTML/BBCodeParser.php');
+require_once 'HTML/BBCodeParser/Filter.php';
 
 /**
  * 
  */
-class HTML_BBCodeParser_Filter_Lists extends HTML_BBCodeParser
+class HTML_BBCodeParser_Filter_Lists extends HTML_BBCodeParser_Filter
 {
 
     /**

@@ -23,16 +23,12 @@
 * @package  HTML_BBCodeParser
 * @author   Stijn de Reede  <sjr@gmx.co.uk>
 */
+require_once 'HTML/BBCodeParser/Filter.php';
 
 /**
  *
  */
-require_once 'HTML/BBCodeParser.php';
-
-/**
- *
- */
-class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser
+class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser_Filter
 {
     /**
      * List of allowed schemes

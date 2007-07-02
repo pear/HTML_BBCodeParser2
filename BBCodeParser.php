@@ -196,7 +196,7 @@ class HTML_BBCodeParser
         unset($baseoptions);
 
         // return if this is a subclass
-        if (is_subclass_of($this, 'HTML_BBCodeParser')) {
+        if (is_subclass_of($this, 'HTML_BBCodeParser_Filter')) {
             return;
         }
 

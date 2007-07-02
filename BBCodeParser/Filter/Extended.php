@@ -25,12 +25,12 @@
 */
 
 
-require_once('HTML/BBCodeParser.php');
+require_once 'HTML/BBCodeParser/Filter.php';
 
 
 
 
-class HTML_BBCodeParser_Filter_Extended extends HTML_BBCodeParser
+class HTML_BBCodeParser_Filter_Extended extends HTML_BBCodeParser_Filter
 {
 
     /**
