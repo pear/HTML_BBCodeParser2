@@ -191,6 +191,27 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
             $bbc->$funcNam('[align=foo"><script>alert(\'JavaScript_Enabled\');</script>][/align]')
         );
 	}
+
+
+
+    function testBug11400()
+    {
+        $bbc = new HTML_BBCodeParser(array('filters' => ''));
+        $bbc->addFilter('Lists');
+
+        //this works
+        $this->assertEquals('<ul><li>one</li><li>two</li></ul>',
+              $bbc->qparse("[ulist][*]one[*]two[/ulist]")
+        );
+        //this not
+        $this->assertEquals('<ul><li>one</li><li>two</li></ul>',
+              $bbc->qparse("[ulist] [*]one[*]two[/ulist]")
+        );
+        //this not
+        $this->assertEquals('<ol><li>one</li><li>two</li></ol>',
+              $bbc->qparse("[list] [*]one[*]two[/list]")
+        );
+    }
 }
 
 //Run tests if run from the command line
