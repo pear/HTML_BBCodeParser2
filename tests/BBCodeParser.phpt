@@ -152,6 +152,9 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
 		$this->assertEquals(
 			'<a href="http://domain.com/index.php?i=1&amp;j=2">linked text</a>',
 			$bbc->$funcNam('[url=http://domain.com/index.php?i=1&j=2]linked text[/URL]'));
+        $this->assertEquals(
+            '<a href="http://domain.com/index.php?i=1&amp;j=2">linked text</a>',
+            $bbc->$funcNam('[url=http://domain.com/index.php?i=1&amp;j=2]linked text[/URL]'));
         //Bug #5609: BBCodeParser allows XSS
 		$this->assertEquals(
             '<a href="javascript&#058;//%0ASh=alert(%22CouCou%22);window.close();">Alert box with "CouCou"</a>',
@@ -194,6 +197,9 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
 
 
 
+    /**
+    *   An empty <li> had been included for the first space
+    */
     function testBug11400()
     {
         $bbc = new HTML_BBCodeParser(array('filters' => ''));
@@ -215,6 +221,9 @@ class BBCodeParser_TestCase extends PHPUnit_TestCase
 
 
 
+    /**
+    *   img tags didn't like = in url
+    */
     function testBug11370()
     {
         $bbc = new HTML_BBCodeParser(array('filters' => ''));
