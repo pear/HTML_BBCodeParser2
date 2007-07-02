@@ -8,7 +8,6 @@ http://pear.php.net/dtd/package-2.0.xsd">
  <summary>This is a parser to replace UBB style tags with their html equivalents.</summary>
  <description>This is a parser to replace UBB style tags with their html equivalents.
  It does not simply do some regex calls, but is complete stack based parse engine. This ensures that all tags are properly nested, if not, extra tags are added to maintain the nesting. This parser should only produce xhtml 1.0 compliant code. All tags are validated and so are all their attributes. It should be easy to extend this parser with your own tags.
- 
  </description>
  <lead>
   <name>Stijn de Reede</name>
@@ -16,9 +15,9 @@ http://pear.php.net/dtd/package-2.0.xsd">
   <email>sjr@gmx.co.uk</email>
   <active>no</active>
  </lead>
- <date>2007-06-05</date>
+ <date>2007-07-02</date>
  <version>
-  <release>1.2.1</release>
+  <release>1.2.2</release>
   <api>1.2.0</api>
  </version>
  <stability>
@@ -27,11 +26,16 @@ http://pear.php.net/dtd/package-2.0.xsd">
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
- - Fix dependency issue
- </notes>
+QA release:
+ * Fix bug 1512: URL Tags Allow Javascript injection
+ * Fix bug 5844: Extending HTML_BBCodeParser class does not work
+ * Fix bug 11370: img don't like '='
+ * Fix bug 11400: Lists start with an empty listitem
+</notes>
  <contents>
   <dir name="/">
    <dir name="BBCodeParser">
+    <file baseinstalldir="HTML" name="Filter.php" role="php" />
     <dir name="example">
      <file baseinstalldir="HTML" name="BBCodeParser.ini" role="doc" />
      <file baseinstalldir="HTML" name="parser.php" role="doc" />
@@ -46,7 +50,8 @@ http://pear.php.net/dtd/package-2.0.xsd">
     </dir> <!-- /BBCodeParser/Filter -->
    </dir> <!-- /BBCodeParser -->
    <dir name="tests">
-    <file baseinstalldir="HTML" name="BBCodeParser.phpt" role="test" />
+    <file baseinstalldir="HTML" name="AllTests.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_BBCodeParserTest.php" role="test" />
    </dir> <!-- /tests -->
    <file baseinstalldir="HTML" name="BBCodeParser.php" role="php" />
   </dir> <!-- / -->
@@ -68,6 +73,23 @@ http://pear.php.net/dtd/package-2.0.xsd">
  </dependencies>
  <phprelease />
  <changelog>
+
+  <release>
+   <date>2007-06-05</date>
+   <version>
+    <release>1.2.1</release>
+    <api>1.2.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Fix dependency issue
+   </notes>
+  </release>
+
   <release>
    <date>2007-06-05</date>
    <version>
@@ -111,6 +133,7 @@ List of changes by Lorenzo Alberton (quipo):
 
    </notes>
   </release>
+
   <release>
    <version>
     <release>1.1</release>

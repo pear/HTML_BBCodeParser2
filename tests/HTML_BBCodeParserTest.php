@@ -2,7 +2,7 @@
 require_once 'PHPUnit.php';
 require_once 'HTML/BBCodeParser.php';
 
-class BBCodeParser_TestCase extends PHPUnit_TestCase
+class HTML_BBCodeParserTest extends PHPUnit_Framework_TestCase
 {
     function testFilters()
     {
