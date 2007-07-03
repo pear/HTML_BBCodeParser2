@@ -1,7 +1,6 @@
 <?php
 if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'AllTests::main');
-    chdir(dirname(__FILE__) . '/../');
+    define('PHPUnit_MAIN_METHOD', 'HTML_BBCodeParser_AllTests::main');
 }
 
 require_once 'PHPUnit/Framework/TestSuite.php';
@@ -27,7 +26,7 @@ class HTML_BBCodeParser_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'AllTests::main') {
-    AllTests::main();
+if (PHPUnit_MAIN_METHOD == 'HTML_BBCodeParser_AllTests::main') {
+    HTML_BBCodeParser_AllTests::main();
 }
 ?>
