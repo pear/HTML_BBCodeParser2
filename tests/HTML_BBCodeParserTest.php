@@ -1,5 +1,12 @@
 <?php
-require_once 'PHPUnit.php';
+if (!defined("PHPUnit_MAIN_METHOD")) {
+    define("PHPUnit_MAIN_METHOD", "HTML_BBCodeParserTest::main");
+}
+
+require_once "PHPUnit/Framework/TestCase.php";
+require_once "PHPUnit/Framework/TestSuite.php";
+
+chdir(dirname(__FILE__) . '/../');
 require_once 'HTML/BBCodeParser.php';
 
 class HTML_BBCodeParserTest extends PHPUnit_Framework_TestCase
@@ -235,10 +242,8 @@ class HTML_BBCodeParserTest extends PHPUnit_Framework_TestCase
     }
 }
 
-//Run tests if run from the command line
-if (realpath($_SERVER['PHP_SELF']) == __FILE__){
-	$suite = new PHPUnit_TestSuite('BBCodeParser_TestCase');
-	$result = PHPUnit::run($suite);
-	echo $result->toString();
+// Call HTML_BBCodeParserTest::main() if this source file is executed directly.
+if (PHPUnit_MAIN_METHOD == "HTML_BBCodeParserTest::main") {
+    HTML_BBCodeParserTest::main();
 }
 ?>
