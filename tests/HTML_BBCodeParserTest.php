@@ -11,6 +11,10 @@ require_once 'HTML/BBCodeParser.php';
 
 class HTML_BBCodeParserTest extends PHPUnit_Framework_TestCase
 {
+    function setUp() {
+        chdir(dirname(__FILE__) . '/../');
+    }
+
     function testFilters()
     {
 		$bbc = new HTML_BBCodeParser(array('filters' => ''));
