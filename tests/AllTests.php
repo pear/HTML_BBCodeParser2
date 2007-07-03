@@ -4,9 +4,6 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
     chdir(dirname(__FILE__) . '/../');
 }
 
-if (!defined('PHPUnit_INSIDE_OWN_TESTSUITE')) {
-    define('PHPUnit_INSIDE_OWN_TESTSUITE', TRUE);
-}
 require_once 'PHPUnit/Framework/TestSuite.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
@@ -14,7 +11,7 @@ require_once 'PHPUnit/TextUI/TestRunner.php';
 require_once 'HTML_BBCodeParserTest.php';
 
 
-class AllTests
+class HTML_BBCodeParser_AllTests
 {
     public static function main()
     {
