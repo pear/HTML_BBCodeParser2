@@ -122,7 +122,7 @@ class HTML_BBCodeParserTest extends PHPUnit_Framework_TestCase
 			'<a href="http://www.test.com/">testurl</a>',
 			$bbc->$funcNam('[url=www.test.com/]testurl[/url]'));
 		$this->assertEquals(
-			'<a href="http://www.server.org">server</a>',
+			'<a href="http://www.server.org" target="new">server</a>',
 			$bbc->$funcNam('[url=http://www.server.org t=new]server[/url]'));
 		$this->assertEquals(
 			'txt <a href="http://www.test.com/">www.test.com</a> txt',
