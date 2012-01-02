@@ -114,6 +114,8 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser_Filter
         $options = PEAR::getStaticProperty('HTML_BBCodeParser','_options');
         $o = $options['open'];
         $c = $options['close'];
+        $oe = $options['open_esc'];
+        $ce = $options['close_esc'];
 
         //If we have an intro tag that is [url], then skip this match
         if (preg_match("/".$oe."url(=[^\s()\[\]=]+)?".$ce."/i", $matches[1])) {
