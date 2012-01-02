@@ -230,7 +230,7 @@ class HTML_BBCodeParserTest extends PHPUnit_Framework_TestCase
         $bbc = new HTML_BBCodeParser(array('filters' => ''));
         $bbc->addFilter('Images');
 
-        $this->assertEquals('<img src="admin.php?fs=image" />',
+        $this->assertEquals('<img src="admin.php?fs=image" alt="" />',
               $bbc->qparse("[img]admin.php?fs=image[/img]")
         );
     }
