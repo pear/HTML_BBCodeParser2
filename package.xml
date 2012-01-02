@@ -11,10 +11,10 @@
   <email>sjr@gmx.co.uk</email>
   <active>no</active>
  </lead>
- <date>2012-01-01</date>
- <time>10:49:28</time>
+ <date>2012-01-02</date>
+ <time>13:14:49</time>
  <version>
-  <release>1.2.2</release>
+  <release>1.2.3</release>
   <api>1.2.0</api>
  </version>
  <stability>
@@ -23,26 +23,27 @@
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
-QA release:
- * Fix bug 1512: URL Tags Allow Javascript injection
- * Fix bug 5844: Extending HTML_BBCodeParser class does not work
- * Fix bug 11370: img don&apos;t like &apos;=&apos;
- * Fix bug 11400: Lists start with an empty listitem
+QA release
+Doc Bug #11576 	Problems with http:// in [img]	doconnor
+Request #12002 Target set in [url] doesn&apos;t work	doconnor
+Request #12423 IRC links not allowed	doconnor
+Bug #12644 [url=http://www.google.nl]http://www.google.nl[/url] expands strange	doconnor
+Bug #14380 Image Filter does not generate alt by default	doconnor
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
-   <file baseinstalldir="/" md5sum="5954ae9b9e8b74a0e5e49045276c9cbf" name="example/BBCodeParser.ini" role="data" />
+   <file baseinstalldir="/" md5sum="af10de7a3716eb263c0d6470c78f43b4" name="example/BBCodeParser.ini" role="data" />
    <file baseinstalldir="/" md5sum="d8519ccbdd727314d4126300e0205c8b" name="example/parser.php" role="php" />
-   <file baseinstalldir="/" md5sum="da1a46c3cf44b406305c8147e5a0af59" name="HTML/BBCodeParser.php" role="php" />
+   <file baseinstalldir="/" md5sum="ed5f0d6a85b1f4d7a4eac94c2dfecf35" name="HTML/BBCodeParser.php" role="php" />
    <file baseinstalldir="/" md5sum="10a469518e068d6b4e46a240b4ff4240" name="HTML/BBCodeParser/Filter.php" role="php" />
    <file baseinstalldir="/" md5sum="f052d27cf4c4ab0adc079dd69c4b272a" name="HTML/BBCodeParser/Filter/Basic.php" role="php" />
    <file baseinstalldir="/" md5sum="a924eb143bf02e65ac0165c1977d7890" name="HTML/BBCodeParser/Filter/Email.php" role="php" />
    <file baseinstalldir="/" md5sum="fb9a12ca780379c5b729f4cbdf94170b" name="HTML/BBCodeParser/Filter/Extended.php" role="php" />
-   <file baseinstalldir="/" md5sum="a356ed624443cfece3b091b0d4f150b6" name="HTML/BBCodeParser/Filter/Images.php" role="php" />
-   <file baseinstalldir="/" md5sum="2ac00881f7d0300bab11d8b23f02d911" name="HTML/BBCodeParser/Filter/Links.php" role="php" />
+   <file baseinstalldir="/" md5sum="844a583e3041053de8f5d5948848afee" name="HTML/BBCodeParser/Filter/Images.php" role="php" />
+   <file baseinstalldir="/" md5sum="dbb1ee634713da5cc7a1ee417dc537f6" name="HTML/BBCodeParser/Filter/Links.php" role="php" />
    <file baseinstalldir="/" md5sum="ff3e35ba8a52aae796a7b3c11da41306" name="HTML/BBCodeParser/Filter/Lists.php" role="php" />
    <file baseinstalldir="HTML" md5sum="abb1e7f261400a067197e1f882467a0a" name="tests/AllTests.php" role="test" />
-   <file baseinstalldir="HTML" md5sum="1dcf8f98df9d690a53bcb47c629c3b87" name="tests/HTML_BBCodeParserTest.php" role="test" />
+   <file baseinstalldir="HTML" md5sum="52c41f6d6f4620fdd7215a21501a0991" name="tests/HTML_BBCodeParserTest.php" role="test" />
    <file baseinstalldir="/" md5sum="9efa99f043b826d46814fed30ba41ba0" name="README" role="data" />
    <file baseinstalldir="/" md5sum="a5a36f5ec0b094c93b39cf3bae5b51ca" name="TODO" role="data" />
   </dir>
@@ -191,6 +192,26 @@ QA release:
  * Fix bug 5844: Extending HTML_BBCodeParser class does not work
  * Fix bug 11370: img don&apos;t like &apos;=&apos;
  * Fix bug 11400: Lists start with an empty listitem
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.3</release>
+    <api>1.2.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-01-02</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+QA release
+Doc Bug #11576 	Problems with http:// in [img]	doconnor
+Request #12002 Target set in [url] doesn&apos;t work	doconnor
+Request #12423 IRC links not allowed	doconnor
+Bug #12644 [url=http://www.google.nl]http://www.google.nl[/url] expands strange	doconnor
+Bug #14380 Image Filter does not generate alt by default	doconnor
    </notes>
   </release>
  </changelog>
