@@ -57,7 +57,8 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser_Filter
             'htmlopen'  => 'a',
             'htmlclose' => 'a',
             'allowed'   => 'none^img',
-            'attributes'=> array('url' => 'href=%2$s%1$s%2$s')
+            'attributes'=> array('url' => 'href=%2$s%1$s%2$s',
+                                 't'   => 'target=%2$s%1$s%2$s')
         )
     );
 
