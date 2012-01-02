@@ -456,11 +456,11 @@ class HTML_BBCodeParser
             // tnx to Onno for the regex
             // validate the arguments
             $attributeArray = array();
-            $regex = "![\s$oe]([a-z0-9]+)=(\"[^$ce]+\"|[^\s$ce]";
+            $regex = "![\s$oe]([a-z0-9]+)=(\"[^\s$ce]+\"|[^\s$ce]";
             if ($tag['tag'] != 'url') {
                 $regex .= "[^=]";
             }
-            $regex .= "+)(?=[\s$ce])!iU";
+            $regex .= "+)(?=[\s$ce])!i";
             preg_match_all($regex, $str, $attributeArray, PREG_SET_ORDER);
             foreach ($attributeArray as $attribute) {
                 $attNam = strtolower($attribute[1]);
