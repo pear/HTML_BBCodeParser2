@@ -36,7 +36,7 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser_Filter
      * @access  private
      * @var     array
      */
-    var $_allowedSchemes = array('http', 'https', 'ftp');
+    var $_allowedSchemes = array('http', 'https', 'ftp', 'irc');
 
     /**
      * Default scheme
