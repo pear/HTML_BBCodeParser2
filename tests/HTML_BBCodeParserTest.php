@@ -37,9 +37,9 @@ class HTML_BBCodeParserTest extends PHPUnit_Framework_TestCase
 
 	function imgBBCode($bbc, $funcNam)
     {
-        $this->assertEquals('<img src="/images/Enthalpy Wheel.png" width="100" height="99" alt="Enthalpy Wheel" />', $bbc->$funcNam('[img w=100 h=99 alt=Enthalpy Wheel]/images/Enthalpy Wheel.png[/img]'));
-		$this->assertEquals('<img src="img.jpg" />', $bbc->$funcNam('[img]img.jpg[/img]'));
-		$this->assertEquals('<img src="http://www.server.org/image.jpg" width="100" height="200" />', $bbc->$funcNam('[img w=100 h=200]http://www.server.org/image.jpg[/img]'));
+        $this->assertEquals('<img src="/images/Enthalpy Wheel.png" alt="Enthalpy Wheel" width="100" height="99" />', $bbc->$funcNam('[img w=100 h=99 alt=Enthalpy Wheel]/images/Enthalpy Wheel.png[/img]'));
+		$this->assertEquals('<img src="img.jpg" alt="" />', $bbc->$funcNam('[img]img.jpg[/img]'));
+		$this->assertEquals('<img src="http://www.server.org/image.jpg" alt="" width="100" height="200" />', $bbc->$funcNam('[img w=100 h=200]http://www.server.org/image.jpg[/img]'));
 	}
 
 	function basicBBCode($bbc, $funcNam)
