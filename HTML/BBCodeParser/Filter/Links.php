@@ -115,7 +115,7 @@ class HTML_BBCodeParser_Filter_Links extends HTML_BBCodeParser_Filter
         $c = $options['close'];
 
         //If we have an intro tag that is [url], then skip this match
-        if ($matches[1] == $o.'url'.$c) {
+        if (preg_match("/".$oe."url(=[^\s()\[\]=]+)?".$ce."/i", $matches[1])) {
             return $matches[0];
         }
 
