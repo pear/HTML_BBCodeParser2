@@ -1,7 +1,7 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
-// | PHP Version 4                                                        |
+// | PHP Version 5                                                        |
 // +----------------------------------------------------------------------+
 // | Copyright (c) 1997-2003 The PHP Group                                |
 // +----------------------------------------------------------------------+
@@ -20,7 +20,7 @@
 //
 
 /**
-* @package  HTML_BBCodeParser
+* @package  HTML_BBCodeParser2
 * @author   Stijn de Reede  <sjr@gmx.co.uk>
 *
 *
@@ -34,21 +34,21 @@
 *
 *
 * Usage:
-* $parser = new HTML_BBCodeParser();
+* $parser = new HTML_BBCodeParser2();
 * $parser->setText('normal [b]bold[/b] and normal again');
 * $parser->parse();
 * echo $parser->getParsed();
 * or:
-* $parser = new HTML_BBCodeParser();
+* $parser = new HTML_BBCodeParser2();
 * echo $parser->qparse('normal [b]bold[/b] and normal again');
 * or:
-* echo HTML_BBCodeParser::staticQparse('normal [b]bold[/b] and normal again');
+* echo HTML_BBCodeParser2::staticQparse('normal [b]bold[/b] and normal again');
 *
 *
 * Setting the options from the ini file:
 * $config = parse_ini_file('BBCodeParser.ini', true);
-* $options = &PEAR::getStaticProperty('HTML_BBCodeParser', '_options');
-* $options = $config['HTML_BBCodeParser'];
+* $options = &PEAR::getStaticProperty('HTML_BBCodeParser2', '_options');
+* $options = $config['HTML_BBCodeParser2'];
 * unset($options);
 *
 *
@@ -80,7 +80,7 @@
 */
 require_once 'PEAR.php';
 
-class HTML_BBCodeParser
+class HTML_BBCodeParser2
 {
     /**
      * An array of tags parsed by the engine, should be overwritten by filters
@@ -163,11 +163,11 @@ class HTML_BBCodeParser
      * @access   public
      * @author   Stijn de Reede  <sjr@gmx.co.uk>
      */
-    function HTML_BBCodeParser($options = array())
+    function __construct($options = array())
     {
         $pear=new PEAR();
         // set the already set options
-        $baseoptions = $pear->getStaticProperty('HTML_BBCodeParser', '_options');
+        $baseoptions = $pear->getStaticProperty('HTML_BBCodeParser2', '_options');
         if (is_array($baseoptions)) {
             foreach ($baseoptions as  $k => $v)  {
                 $this->_options[$k] = $v;
@@ -197,7 +197,7 @@ class HTML_BBCodeParser
         unset($baseoptions);
 
         // return if this is a subclass
-        if (is_subclass_of($this, 'HTML_BBCodeParser_Filter')) {
+        if (is_subclass_of($this, 'HTML_BBCodeParser2_Filter')) {
             return;
         }
 
@@ -227,8 +227,8 @@ class HTML_BBCodeParser
     {
         $filter = ucfirst($filter);
         if (!array_key_exists($filter, $this->_filters)) {
-            $class = 'HTML_BBCodeParser_Filter_'.$filter;
-            @include_once 'HTML/BBCodeParser/Filter/'.$filter.'.php';
+            $class = 'HTML_BBCodeParser2_Filter_'.$filter;
+            @include_once 'HTML/BBCodeParser2/Filter/'.$filter.'.php';
             if (!class_exists($class)) {
                 PEAR::raiseError("Failed to load filter $filter", null, PEAR_ERROR_DIE);
             }
@@ -314,7 +314,7 @@ class HTML_BBCodeParser
         $this->_preparsed = $this->_text;
 
         // return if this is a subclass
-        if (is_subclass_of($this, 'HTML_BBCodeParser')) {
+        if (is_subclass_of($this, 'HTML_BBCodeParser2')) {
             return;
         }
 
@@ -874,7 +874,7 @@ class HTML_BBCodeParser
      */
     function staticQparse($str)
     {
-        $p = new HTML_BBCodeParser();
+        $p = new HTML_BBCodeParser2();
         $str = $p->qparse($str);
         unset($p);
         return $str;

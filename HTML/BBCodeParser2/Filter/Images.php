@@ -1,7 +1,7 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
-// | PHP Version 4                                                        |
+// | PHP Version 5                                                        |
 // +----------------------------------------------------------------------+
 // | Copyright (c) 1997-2003 The PHP Group                                |
 // +----------------------------------------------------------------------+
@@ -23,9 +23,9 @@
 * @package  HTML_BBCodeParser
 * @author   Stijn de Reede  <sjr@gmx.co.uk>
 */
-require_once 'HTML/BBCodeParser/Filter.php';
+require_once 'HTML/BBCodeParser2/Filter.php';
 
-class HTML_BBCodeParser_Filter_Images extends HTML_BBCodeParser_Filter
+class HTML_BBCodeParser2_Filter_Images extends HTML_BBCodeParser2_Filter
 {
 
     /**
@@ -66,7 +66,7 @@ class HTML_BBCodeParser_Filter_Images extends HTML_BBCodeParser_Filter
     */
     function _preparse()
     {
-        $options = PEAR::getStaticProperty('HTML_BBCodeParser','_options');
+        $options = PEAR::getStaticProperty('HTML_BBCodeParser2','_options');
         $o  = $options['open'];
         $c  = $options['close'];
         $oe = $options['open_esc'];
