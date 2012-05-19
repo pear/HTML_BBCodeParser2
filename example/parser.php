@@ -8,16 +8,16 @@ error_reporting(E_ALL);
 
 /* require PEAR and the parser */
 require_once('PEAR.php');
-require_once('HTML/BBCodeParser.php');
+require_once('HTML/BBCodeParser2.php');
 
 /* get options from the ini file */
-$config = parse_ini_file('BBCodeParser.ini', true);
-$options = &PEAR::getStaticProperty('HTML_BBCodeParser', '_options');
-$options = $config['HTML_BBCodeParser'];
+$config = parse_ini_file('BBCodeParser2.ini', true);
+$options = PEAR::getStaticProperty('HTML_BBCodeParser2', '_options');
+$options = $config['HTML_BBCodeParser2'];
 unset($options);
 
 /* do yer stuff! */
-$parser = new HTML_BBCodeParser();
+$parser = new HTML_BBCodeParser2();
 $parser->setText(@$_GET['string']);
 $parser->parse();
 $parsed = $parser->getParsed();
@@ -26,7 +26,7 @@ $parsed = $parser->getParsed();
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>HTML_BBCodeParser (by Stijn de Reede)</title>
+<title>HTML_BBCodeParser2 (by Stijn de Reede)</title>
 </head>
 <body>
 <form method='get' action='parser.php'>
