@@ -1,13 +1,13 @@
 <?php
 require_once "PHPUnit/Framework/TestCase.php";
-require_once 'HTML/BBCodeParser.php';
+require_once 'HTML/BBCodeParser2.php';
 
-class HTML_BBCodeParserTest extends PHPUnit_Framework_TestCase
+class HTML_BBCodeParser2Test extends PHPUnit_Framework_TestCase
 {
 
     function testFilters()
     {
-		$bbc = new HTML_BBCodeParser(array('filters' => ''));
+		$bbc = new HTML_BBCodeParser2(array('filters' => ''));
 		$bbc->addFilter('Basic');
 		$this->basicBBCode($bbc, 'qparse');
 		$bbc->removeFilter('Basic');
@@ -19,7 +19,7 @@ class HTML_BBCodeParserTest extends PHPUnit_Framework_TestCase
 
 	function testQparse()
     {
-		$bbc = new HTML_BBCodeParser(array('filters' => 'Basic,Email,Extended,Images,Links,Lists'));
+		$bbc = new HTML_BBCodeParser2(array('filters' => 'Basic,Email,Extended,Images,Links,Lists'));
         $this->basicBBCode($bbc, 'qparse');
 		$this->listBBCode($bbc, 'qparse');
 		$this->linkBBCode($bbc, 'qparse');
@@ -203,7 +203,7 @@ class HTML_BBCodeParserTest extends PHPUnit_Framework_TestCase
     */
     function testBug11400()
     {
-        $bbc = new HTML_BBCodeParser(array('filters' => ''));
+        $bbc = new HTML_BBCodeParser2(array('filters' => ''));
         $bbc->addFilter('Lists');
 
         //this works
@@ -227,7 +227,7 @@ class HTML_BBCodeParserTest extends PHPUnit_Framework_TestCase
     */
     function testBug11370()
     {
-        $bbc = new HTML_BBCodeParser(array('filters' => ''));
+        $bbc = new HTML_BBCodeParser2(array('filters' => ''));
         $bbc->addFilter('Images');
 
         $this->assertEquals('<img src="admin.php?fs=image" alt="" />',
