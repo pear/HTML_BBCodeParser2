@@ -1,13 +1,4 @@
 <?php
-
-/* adjust include_path to include PEAR */
-ini_set('include_path', ini_get('include_path').':/usr/share/pear');
-
-/* all your errors are belong to us */
-error_reporting(E_ALL);
-
-/* require PEAR and the parser */
-require_once('PEAR.php');
 require_once('HTML/BBCodeParser2.php');
 
 /* get options from the ini file */
@@ -16,7 +7,7 @@ $options = $config['HTML_BBCodeParser2'];
 
 /* do yer stuff! */
 $parser = new HTML_BBCodeParser2($options);
-$parser->setText(@$_GET['string']);
+$parser->setText($_GET['string']);
 $parser->parse();
 $parsed = $parser->getParsed();
 

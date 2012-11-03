@@ -11,15 +11,21 @@
   <email>sjr@gmx.co.uk</email>
   <active>no</active>
  </lead>
+ <lead>
+  <name>Daniel O'Connor</name>
+  <user>doconnor</user>
+  <email>clockwerx@php.net</email>
+  <active>yes</active>
+ </lead>
  <date>2012-11-03</date>
- <time>13:58:31</time>
+ <time>14:00:34</time>
  <version>
   <release>0.1.0</release>
   <api>0.1.0</api>
  </version>
  <stability>
-  <release>stable</release>
-  <api>stable</api>
+  <release>beta</release>
+  <api>beta</api>
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
@@ -28,7 +34,7 @@ Forked from HTML_BBCodeParser
  <contents>
   <dir baseinstalldir="/" name="/">
    <file baseinstalldir="/" md5sum="4b21a26a5458a24d954318736ff557dc" name="example/BBCodeParser2.ini" role="data" />
-   <file baseinstalldir="/" md5sum="d3f994188e23f15be64701744837ad47" name="example/parser.php" role="php" />
+   <file baseinstalldir="/" md5sum="cae173b47c741333a07f2d719ffb733a" name="example/parser.php" role="php" />
    <file baseinstalldir="/" md5sum="1b10fb033f10f196a93eace0b62b0ec0" name="HTML/BBCodeParser2.php" role="php" />
    <file baseinstalldir="/" md5sum="b9768d4b7d62c9ac8850e440263557b4" name="HTML/BBCodeParser2/Filter.php" role="php" />
    <file baseinstalldir="/" md5sum="a0180072b1ab1d5305e45740cbb1d5a2" name="HTML/BBCodeParser2/Filter/Basic.php" role="php" />
@@ -50,11 +56,6 @@ Forked from HTML_BBCodeParser
    <pearinstaller>
     <min>1.5.4</min>
    </pearinstaller>
-   <package>
-    <name>PEAR</name>
-    <channel>pear.php.net</channel>
-    <min>1.5.4</min>
-   </package>
   </required>
  </dependencies>
  <phprelease />
