@@ -11,11 +11,11 @@
   <email>sjr@gmx.co.uk</email>
   <active>no</active>
  </lead>
- <date>2012-01-02</date>
- <time>13:14:49</time>
+ <date>2012-11-03</date>
+ <time>13:43:48</time>
  <version>
-  <release>1.2.3</release>
-  <api>1.2.0</api>
+  <release>0.1.0</release>
+  <api>0.1.0</api>
  </version>
  <stability>
   <release>stable</release>
@@ -23,35 +23,29 @@
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
-QA release
-Doc Bug #11576 	Problems with http:// in [img]	doconnor
-Request #12002 Target set in [url] doesn&apos;t work	doconnor
-Request #12423 IRC links not allowed	doconnor
-Bug #12644 [url=http://www.google.nl]http://www.google.nl[/url] expands strange	doconnor
-Bug #14380 Image Filter does not generate alt by default	doconnor
+Forked from HTML_BBCodeParser
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
-   <file baseinstalldir="/" md5sum="af10de7a3716eb263c0d6470c78f43b4" name="example/BBCodeParser.ini" role="data" />
-   <file baseinstalldir="/" md5sum="d8519ccbdd727314d4126300e0205c8b" name="example/parser.php" role="php" />
-   <file baseinstalldir="/" md5sum="ed5f0d6a85b1f4d7a4eac94c2dfecf35" name="HTML/BBCodeParser.php" role="php" />
-   <file baseinstalldir="/" md5sum="10a469518e068d6b4e46a240b4ff4240" name="HTML/BBCodeParser/Filter.php" role="php" />
-   <file baseinstalldir="/" md5sum="f052d27cf4c4ab0adc079dd69c4b272a" name="HTML/BBCodeParser/Filter/Basic.php" role="php" />
-   <file baseinstalldir="/" md5sum="a924eb143bf02e65ac0165c1977d7890" name="HTML/BBCodeParser/Filter/Email.php" role="php" />
-   <file baseinstalldir="/" md5sum="fb9a12ca780379c5b729f4cbdf94170b" name="HTML/BBCodeParser/Filter/Extended.php" role="php" />
-   <file baseinstalldir="/" md5sum="844a583e3041053de8f5d5948848afee" name="HTML/BBCodeParser/Filter/Images.php" role="php" />
-   <file baseinstalldir="/" md5sum="dbb1ee634713da5cc7a1ee417dc537f6" name="HTML/BBCodeParser/Filter/Links.php" role="php" />
-   <file baseinstalldir="/" md5sum="ff3e35ba8a52aae796a7b3c11da41306" name="HTML/BBCodeParser/Filter/Lists.php" role="php" />
-   <file baseinstalldir="HTML" md5sum="abb1e7f261400a067197e1f882467a0a" name="tests/AllTests.php" role="test" />
-   <file baseinstalldir="HTML" md5sum="52c41f6d6f4620fdd7215a21501a0991" name="tests/HTML_BBCodeParserTest.php" role="test" />
-   <file baseinstalldir="/" md5sum="9efa99f043b826d46814fed30ba41ba0" name="README" role="data" />
+   <file baseinstalldir="/" md5sum="4b21a26a5458a24d954318736ff557dc" name="example/BBCodeParser2.ini" role="data" />
+   <file baseinstalldir="/" md5sum="8100c2ef952cedb8d976fb046980c113" name="example/parser.php" role="php" />
+   <file baseinstalldir="/" md5sum="496f72e41d23190e256935b8af7bebb7" name="HTML/BBCodeParser2.php" role="php" />
+   <file baseinstalldir="/" md5sum="b9768d4b7d62c9ac8850e440263557b4" name="HTML/BBCodeParser2/Filter.php" role="php" />
+   <file baseinstalldir="/" md5sum="a0180072b1ab1d5305e45740cbb1d5a2" name="HTML/BBCodeParser2/Filter/Basic.php" role="php" />
+   <file baseinstalldir="/" md5sum="bdb7afa0ae5abc49a0beeb5b75740571" name="HTML/BBCodeParser2/Filter/Email.php" role="php" />
+   <file baseinstalldir="/" md5sum="e7dbe406fc7a7a9e7b2cd82d9e6a573e" name="HTML/BBCodeParser2/Filter/Extended.php" role="php" />
+   <file baseinstalldir="/" md5sum="6f4c2a330a7f8fb0021a9bf01d603956" name="HTML/BBCodeParser2/Filter/Images.php" role="php" />
+   <file baseinstalldir="/" md5sum="b6eb353ea812e2437bb653db909d4788" name="HTML/BBCodeParser2/Filter/Links.php" role="php" />
+   <file baseinstalldir="/" md5sum="a379dfdee94c263cb2c4c7ac57e97e76" name="HTML/BBCodeParser2/Filter/Lists.php" role="php" />
+   <file baseinstalldir="/" md5sum="d65933ef1613c22ddfc5276a5200236d" name="tests/HTML_BBCodeParser2Test.php" role="test" />
+   <file baseinstalldir="/" md5sum="53595c19c98669add7fdf564a3216b85" name="README" role="data" />
    <file baseinstalldir="/" md5sum="a5a36f5ec0b094c93b39cf3bae5b51ca" name="TODO" role="data" />
   </dir>
  </contents>
  <dependencies>
   <required>
    <php>
-    <min>4.3.0</min>
+    <min>5.0.0</min>
    </php>
    <pearinstaller>
     <min>1.5.4</min>
@@ -67,151 +61,17 @@ Bug #14380 Image Filter does not generate alt by default	doconnor
  <changelog>
   <release>
    <version>
-    <release>1.0</release>
-    <api>1.0</api>
+    <release>0.1.0</release>
+    <api>0.1.0</api>
    </version>
    <stability>
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2003-07-24</date>
+   <date>2012-11-03</date>
    <license uri="http://www.php.net/license">PHP License</license>
    <notes>
-First release of HTML_BBCodeParser
-   </notes>
-  </release>
-  <release>
-   <version>
-    <release>1.1b1</release>
-    <api>1.1b1</api>
-   </version>
-   <stability>
-    <release>beta</release>
-    <api>beta</api>
-   </stability>
-   <date>2004-01-19</date>
-   <license uri="http://www.php.net/license">PHP License</license>
-   <notes>
-This is a new beta release of HTML_BBCodeParser. It should fix some
-   reported issue&apos;s/bugs. It also contains a new filter for more advanced
-   text manipulation. Although this release is marked as a beta, I think
-   it should be pretty stable and not show many bugs.
-   </notes>
-  </release>
-  <release>
-   <version>
-    <release>1.1</release>
-    <api>1.1</api>
-   </version>
-   <stability>
-    <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <date>2004-02-28</date>
-   <license uri="http://www.php.net/license">PHP License</license>
-   <notes>
-Since no bugs have come up for the beta release (except one, which
-   was already fixed in CVS), the previous beta is now released as stable,
-   with very few changes. Bigger changes, like more-than-one character
-   delimiters, optional quotes in attribute values, etc, will be in the next
-   beta release.
-   </notes>
-  </release>
-  <release>
-   <date>2007-06-05</date>
-   <version>
-    <release>1.2.0</release>
-    <api>1.2.0</api>
-   </version>
-   <stability>
-    <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <license uri="http://www.php.net/license">PHP License</license>
-   <notes>
-This is a PEAR-QA release.
-
-List of changes by Christian Weiske (cweiske)
-Bug #3775  strstr(): Empty delimiter.
-
-List of changes by Helgi Þormar Þorbjörnsson (dufuz)
-Bug #10616  Values are being truncated when a space is found.
-
-List of changes by Seth Price:
-- fixed Bug #373  	URL&apos;s with &apos;&amp;&apos; are parsed incorrectly
-- fixed bug #512: [list] in a [list] breaks the first [list]
-- fixed bug #1201: [list] output adding extra &lt;li&gt;&lt;/li&gt;
-- fixed bug #1258: Extra tags rendered with faulty BBCode
-- fixed bug #1299: Case sensitive in tag
-- fixed bug #1388: www links not expanded correctly
-- fixed bug #1512: URL Tags Allow Javascript injection
-- fixed bug #1755: If an URL is surrounded by another tag, the output get messed up
-- fixed bug #3690: BBCodeParser does not allow numbers in the opening tag
-- fixed bug #3932: External URLs are parsed without adding http://
-- XHTML 1.1 compliance
-- added testsuite
-
-List of changes by Lorenzo Alberton (quipo):
-- fixed bug #5609: BBCodeParser allows XSS
-- improved link parsing routine in the Links filter
-- added addFilter(), addFilters(), removeFilter() methods to dynamically
-  add/remove one or more filters
-- coding standards fixes
-- added more testcases to the testsuite
-   </notes>
-  </release>
-  <release>
-   <date>2007-06-05</date>
-   <version>
-    <release>1.2.1</release>
-    <api>1.2.0</api>
-   </version>
-   <stability>
-    <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <license uri="http://www.php.net/license">PHP License</license>
-   <notes>
-- Fix dependency issue
-   </notes>
-  </release>
-  <release>
-   <version>
-    <release>1.2.2</release>
-    <api>1.2.0</api>
-   </version>
-   <stability>
-    <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <date>2012-01-01</date>
-   <license uri="http://www.php.net/license">PHP License</license>
-   <notes>
-QA release:
- * Fix bug 1512: URL Tags Allow Javascript injection
- * Fix bug 5844: Extending HTML_BBCodeParser class does not work
- * Fix bug 11370: img don&apos;t like &apos;=&apos;
- * Fix bug 11400: Lists start with an empty listitem
-   </notes>
-  </release>
-  <release>
-   <version>
-    <release>1.2.3</release>
-    <api>1.2.0</api>
-   </version>
-   <stability>
-    <release>stable</release>
-    <api>stable</api>
-   </stability>
-   <date>2012-01-02</date>
-   <license uri="http://www.php.net/license">PHP License</license>
-   <notes>
-QA release
-Doc Bug #11576 	Problems with http:// in [img]	doconnor
-Request #12002 Target set in [url] doesn&apos;t work	doconnor
-Request #12423 IRC links not allowed	doconnor
-Bug #12644 [url=http://www.google.nl]http://www.google.nl[/url] expands strange	doconnor
-Bug #14380 Image Filter does not generate alt by default	doconnor
+Forked from HTML_BBCodeParser
    </notes>
   </release>
  </changelog>
