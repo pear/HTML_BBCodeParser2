@@ -78,7 +78,7 @@ class HTML_BBCodeParser2_Filter_Lists extends HTML_BBCodeParser2_Filter
     */
     function _preparse()
     {
-        $options = PEAR::getStaticProperty('HTML_BBCodeParser2','_options');
+        $options = $this->_options;
         $o = $options['open'];
         $c = $options['close'];
         $oe = $options['open_esc'];

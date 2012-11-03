@@ -12,12 +12,10 @@ require_once('HTML/BBCodeParser2.php');
 
 /* get options from the ini file */
 $config = parse_ini_file('BBCodeParser2.ini', true);
-$options = PEAR::getStaticProperty('HTML_BBCodeParser2', '_options');
 $options = $config['HTML_BBCodeParser2'];
-unset($options);
 
 /* do yer stuff! */
-$parser = new HTML_BBCodeParser2();
+$parser = new HTML_BBCodeParser2($options);
 $parser->setText(@$_GET['string']);
 $parser->parse();
 $parsed = $parser->getParsed();

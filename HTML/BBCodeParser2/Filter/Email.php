@@ -66,8 +66,7 @@ class HTML_BBCodeParser2_Filter_Email extends HTML_BBCodeParser2_Filter
     */
     function _preparse()
     {
-        $pear = new PEAR();
-        $options = $pear->getStaticProperty('HTML_BBCodeParser2','_options');
+        $options = $this->_options;
         $o = $options['open'];
         $c = $options['close'];
         $oe = $options['open_esc'];

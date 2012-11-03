@@ -34,12 +34,12 @@
 *
 *
 * Usage:
-* $parser = new HTML_BBCodeParser2();
+* $parser = new HTML_BBCodeParser2($options = array(...));
 * $parser->setText('normal [b]bold[/b] and normal again');
 * $parser->parse();
 * echo $parser->getParsed();
 * or:
-* $parser = new HTML_BBCodeParser2();
+* $parser = new HTML_BBCodeParser2($options = array(...));
 * echo $parser->qparse('normal [b]bold[/b] and normal again');
 * or:
 * echo HTML_BBCodeParser2::staticQparse('normal [b]bold[/b] and normal again');
@@ -47,10 +47,7 @@
 *
 * Setting the options from the ini file:
 * $config = parse_ini_file('BBCodeParser.ini', true);
-* $options = &PEAR::getStaticProperty('HTML_BBCodeParser2', '_options');
 * $options = $config['HTML_BBCodeParser2'];
-* unset($options);
-*
 *
 * The _definedTags variables should be in this format:
 * array('tag'                                // the actual tag used
@@ -78,8 +75,6 @@
 *           => (...)
 *       )
 */
-require_once 'PEAR.php';
-
 class HTML_BBCodeParser2
 {
     /**
@@ -148,13 +143,9 @@ class HTML_BBCodeParser2
     /**
      * Constructor, initialises the options and filters
      *
-     * Sets the private variable _options with base options defined with
-     * &PEAR::getStaticProperty(), overwriting them with (if present)
-     * the argument to this method.
-     * Then it sets the extra options to properly escape the tag
-     * characters in preg_replace() etc. The set options are
-     * then stored back with &PEAR::getStaticProperty(), so that the filter
-     * classes can use them.
+     * Sets options to properly escape the tag
+     * characters in preg_replace() etc.
+     * 
      * All the filters in the options are initialised and their defined tags
      * are copied into the private variable _definedTags.
      *
@@ -165,15 +156,6 @@ class HTML_BBCodeParser2
      */
     function __construct($options = array())
     {
-        $pear=new PEAR();
-        // set the already set options
-        $baseoptions = $pear->getStaticProperty('HTML_BBCodeParser2', '_options');
-        if (is_array($baseoptions)) {
-            foreach ($baseoptions as  $k => $v)  {
-                $this->_options[$k] = $v;
-            }
-        }
-
         // set the options passed as an argument
         foreach ($options as $k => $v )  {
             $this->_options[$k] = $v;
@@ -230,7 +212,7 @@ class HTML_BBCodeParser2
             $class = 'HTML_BBCodeParser2_Filter_'.$filter;
             @include_once 'HTML/BBCodeParser2/Filter/'.$filter.'.php';
             if (!class_exists($class)) {
-                PEAR::raiseError("Failed to load filter $filter", null, PEAR_ERROR_DIE);
+                throw new InvalidArgumentException("Failed to load filter $filter");
             }
             $this->_filters[$filter] = new $class;
             $this->_definedTags = array_merge(
