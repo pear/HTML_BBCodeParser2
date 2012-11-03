@@ -12,7 +12,7 @@
   <active>no</active>
  </lead>
  <date>2012-11-03</date>
- <time>13:43:48</time>
+ <time>13:58:31</time>
  <version>
   <release>0.1.0</release>
   <api>0.1.0</api>
@@ -28,15 +28,15 @@ Forked from HTML_BBCodeParser
  <contents>
   <dir baseinstalldir="/" name="/">
    <file baseinstalldir="/" md5sum="4b21a26a5458a24d954318736ff557dc" name="example/BBCodeParser2.ini" role="data" />
-   <file baseinstalldir="/" md5sum="8100c2ef952cedb8d976fb046980c113" name="example/parser.php" role="php" />
-   <file baseinstalldir="/" md5sum="496f72e41d23190e256935b8af7bebb7" name="HTML/BBCodeParser2.php" role="php" />
+   <file baseinstalldir="/" md5sum="d3f994188e23f15be64701744837ad47" name="example/parser.php" role="php" />
+   <file baseinstalldir="/" md5sum="1b10fb033f10f196a93eace0b62b0ec0" name="HTML/BBCodeParser2.php" role="php" />
    <file baseinstalldir="/" md5sum="b9768d4b7d62c9ac8850e440263557b4" name="HTML/BBCodeParser2/Filter.php" role="php" />
    <file baseinstalldir="/" md5sum="a0180072b1ab1d5305e45740cbb1d5a2" name="HTML/BBCodeParser2/Filter/Basic.php" role="php" />
-   <file baseinstalldir="/" md5sum="bdb7afa0ae5abc49a0beeb5b75740571" name="HTML/BBCodeParser2/Filter/Email.php" role="php" />
+   <file baseinstalldir="/" md5sum="97067ea67ae9aba7aa2c844b101b3c68" name="HTML/BBCodeParser2/Filter/Email.php" role="php" />
    <file baseinstalldir="/" md5sum="e7dbe406fc7a7a9e7b2cd82d9e6a573e" name="HTML/BBCodeParser2/Filter/Extended.php" role="php" />
-   <file baseinstalldir="/" md5sum="6f4c2a330a7f8fb0021a9bf01d603956" name="HTML/BBCodeParser2/Filter/Images.php" role="php" />
-   <file baseinstalldir="/" md5sum="b6eb353ea812e2437bb653db909d4788" name="HTML/BBCodeParser2/Filter/Links.php" role="php" />
-   <file baseinstalldir="/" md5sum="a379dfdee94c263cb2c4c7ac57e97e76" name="HTML/BBCodeParser2/Filter/Lists.php" role="php" />
+   <file baseinstalldir="/" md5sum="a5d20d794e183cdd12282894a5e62aee" name="HTML/BBCodeParser2/Filter/Images.php" role="php" />
+   <file baseinstalldir="/" md5sum="c17ce7ba2f009e6760e701e0bcd03433" name="HTML/BBCodeParser2/Filter/Links.php" role="php" />
+   <file baseinstalldir="/" md5sum="6f70562067180a891e2c61425b6cdb15" name="HTML/BBCodeParser2/Filter/Lists.php" role="php" />
    <file baseinstalldir="/" md5sum="d65933ef1613c22ddfc5276a5200236d" name="tests/HTML_BBCodeParser2Test.php" role="test" />
    <file baseinstalldir="/" md5sum="53595c19c98669add7fdf564a3216b85" name="README" role="data" />
    <file baseinstalldir="/" md5sum="a5a36f5ec0b094c93b39cf3bae5b51ca" name="TODO" role="data" />
