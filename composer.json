@@ -27,9 +27,6 @@
         "source": "https://github.com/pear/HTML_BBCodeParser2"
     },
     "type": "library",
-    "require": {
-        "pear/pear_exception": "*"
-    },
     "require-dev": {
         "phpunit/phpunit": "*"
     }
